@@ -120,7 +120,7 @@ export default function Footer() {
         <div className="max-w-7xl mx-auto px-4 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-white">
             <p>&copy; 2025 Bureau Huyghe. Alle rechten voorbehouden.</p>
-            <ul className="flex flex-wrap gap-6">
+            <ul className="flex flex-wrap justify-center md:justify-end gap-4 md:gap-6">
               {legal.map((item) => (
                 <li key={item.path}>
                   <Link

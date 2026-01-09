@@ -51,7 +51,7 @@ export default function ContactPage() {
   return (
     <Layout>
       {/* Hero Section */}
-      <section className="bg-primary-500 text-white py-20">
+      <section className="bg-primary-500 text-white py-12 md:py-20">
         <div className="max-w-7xl mx-auto px-4">
           <div className="max-w-3xl">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
@@ -65,19 +65,19 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section className="py-20">
+      <section className="py-12 md:py-20">
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid lg:grid-cols-3 gap-8">
             {/* Contact Form */}
-            <div className="lg:col-span-2">
+            <div className="lg:col-span-2 order-last lg:order-first">
               <div className="bg-white rounded-xl shadow-lg p-6 md:p-8">
                 <h2 className="text-2xl font-bold text-gray-900 mb-6">Contactformulier</h2>
                 <ContactForm />
               </div>
             </div>
 
-            {/* Contact Information */}
-            <div className="lg:col-span-1 space-y-8">
+            {/* Contact Information - Shows first on mobile */}
+            <div className="lg:col-span-1 space-y-6 order-first lg:order-last">
               {/* Contact Details */}
               <div className="bg-primary-900 text-white rounded-xl shadow-lg p-6 md:p-8">
                 <h2 className="text-xl font-bold mb-6">Contactgegevens</h2>
@@ -154,7 +154,7 @@ export default function ContactPage() {
       </section>
 
       {/* Appointment Booking Section */}
-      <section id="afspraak" className="py-20 bg-gray-50">
+      <section id="afspraak" className="py-12 md:py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4">
           <CalendlyBooking variant="full" />
         </div>

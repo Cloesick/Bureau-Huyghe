@@ -112,8 +112,11 @@ export default function Header() {
         </div>
         
         {/* Mobile menu */}
-        {mobileMenuOpen && (
-          <div className="md:hidden bg-primary-500 border-t border-primary-400 max-h-[calc(100vh-4rem)] overflow-y-auto">
+        <div 
+          className={`md:hidden bg-primary-500 border-t border-primary-400 overflow-hidden transition-all duration-300 ease-in-out ${
+            mobileMenuOpen ? 'max-h-[calc(100vh-8rem)] opacity-100' : 'max-h-0 opacity-0'
+          }`}
+        >
             <nav className="flex flex-col px-4 py-4 space-y-4">
               <Link 
                 to="/landmeting" 
@@ -166,7 +169,6 @@ export default function Header() {
               </Link>
             </nav>
           </div>
-        )}
       </div>
     </header>
   );

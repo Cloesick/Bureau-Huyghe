@@ -1,8 +1,6 @@
 import type { ApiResponse, User, Staff, Appointment, ChatSession } from '../types/api';
 
-const API_BASE = import.meta.env.PROD 
-  ? 'https://3kxjm2mtcj.eu-central-1.awsapprunner.com/api' 
-  : '/api';
+const API_BASE = import.meta.env.VITE_API_URL || '/api';
 
 async function request<T>(
   endpoint: string,

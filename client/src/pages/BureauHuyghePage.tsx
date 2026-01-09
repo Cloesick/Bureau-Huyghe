@@ -1,35 +1,8 @@
 import { Link } from 'react-router-dom';
-import { MapPin, Ruler, Building2, FileText, ArrowRight, CheckCircle, Star, Users, Award } from 'lucide-react';
+import { ArrowRight, CheckCircle, Star, Users, Award } from 'lucide-react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { QuoteCalculatorCompact } from '../components/QuoteCalculator';
-
-const services = [
-  {
-    icon: MapPin,
-    title: 'Perceelafpaling',
-    description: 'Nauwkeurige afbakening van uw perceel met officiële grenspalen en proces-verbaal.',
-    link: '/landmeting'
-  },
-  {
-    icon: Ruler,
-    title: 'Topografische Opmeting',
-    description: 'Complete terreinopmetingen met hoogtegegevens voor bouwprojecten en vergunningen.',
-    link: '/landmeting'
-  },
-  {
-    icon: Building2,
-    title: 'Bouwmeting',
-    description: 'Uitzetting, maatvoering en as-built opmetingen voor uw bouwproject.',
-    link: '/bouwmeting'
-  },
-  {
-    icon: FileText,
-    title: 'Plaatsbeschrijving',
-    description: 'Gedetailleerde documentatie voor huur, verkoop of bouwwerken.',
-    link: '/juridisch'
-  }
-];
 
 const stats = [
   { value: '25+', label: 'Jaar ervaring' },
@@ -100,41 +73,6 @@ export default function BureauHuyghePage() {
                 <p className="text-sm text-gray-500">{stat.label}</p>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Services Section */}
-      <section id="diensten" className="py-16 md:py-24">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Onze Diensten
-            </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Van perceelafpaling tot 3D-scanning, wij bieden een volledig gamma aan landmeetkundige diensten.
-            </p>
-          </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {services.map((service, i) => {
-              const Icon = service.icon;
-              return (
-                <Link
-                  key={i}
-                  to={service.link}
-                  className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow border border-gray-100 group"
-                >
-                  <div className="w-12 h-12 bg-primary-100 rounded-xl flex items-center justify-center mb-4 group-hover:bg-primary-500 transition-colors">
-                    <Icon className="w-6 h-6 text-primary-600 group-hover:text-white transition-colors" />
-                  </div>
-                  <h3 className="font-bold text-gray-900 mb-2">{service.title}</h3>
-                  <p className="text-sm text-gray-600 mb-4">{service.description}</p>
-                  <span className="text-primary-600 text-sm font-medium flex items-center gap-1 group-hover:gap-2 transition-all">
-                    Meer info <ArrowRight className="w-4 h-4" />
-                  </span>
-                </Link>
-              );
-            })}
           </div>
         </div>
       </section>

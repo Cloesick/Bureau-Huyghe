@@ -11,7 +11,7 @@ import OffertePage from './pages/OffertePage';
 import PortfolioPage from './pages/PortfolioPage';
 import { AdminDashboard, AdminOverview, AdminPortfolio, AdminLeads, AdminContent, AdminProjects } from './pages/admin';
 import ClientPortal from './pages/ClientPortal';
-import { PortalOverview, PortalProjects, PortalDocuments, PortalUpload } from './pages/portal';
+import { PortalOverview, PortalProjects, PortalDocuments, PortalUpload, PortalSettings } from './pages/portal';
 
 function App() {
   return (
@@ -42,6 +42,7 @@ function App() {
         <Route path="projects" element={<PortalProjects />} />
         <Route path="documents" element={<PortalDocuments />} />
         <Route path="upload" element={<PortalUpload />} />
+        <Route path="settings" element={<PortalSettings />} />
       </Route>
       
       <Route path="*" element={<div>404 - Pagina niet gevonden</div>} />

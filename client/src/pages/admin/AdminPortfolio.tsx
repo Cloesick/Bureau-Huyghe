@@ -28,13 +28,6 @@ interface PortfolioItem {
   status: 'published' | 'draft';
 }
 
-interface UploadedImage {
-  url: string;
-  filename: string;
-  width: number;
-  height: number;
-  size: number;
-}
 
 const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:3001';
 

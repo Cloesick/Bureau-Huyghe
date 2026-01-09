@@ -2,7 +2,7 @@ import { MapPin } from 'lucide-react';
 import { useLanguage } from '../i18n/LanguageContext';
 
 export default function AboutPage() {
-  const { t } = useLanguage();
+  const { } = useLanguage();
 
   const teamMembers = [
     {

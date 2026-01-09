@@ -3,7 +3,7 @@ import { useLanguage } from '../../i18n/LanguageContext';
 import { Link } from 'react-router-dom';
 
 export default function PropertySurveyPage() {
-  const { t } = useLanguage();
+  useLanguage();
 
   const services = [
     {

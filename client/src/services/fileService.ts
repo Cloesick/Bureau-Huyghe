@@ -7,7 +7,7 @@ export interface UploadResponse {
 
 export const uploadFile = async (file: File): Promise<UploadResponse> => {
   // For testing/development, simulate success if server is not available
-  if ((window as any).Cypress || process.env.NODE_ENV === 'development') {
+  if ((window as any).Cypress || import.meta.env.DEV) {
     console.log('Development mode: Simulating successful file upload');
     return {
       fileId: 'test-file-id',

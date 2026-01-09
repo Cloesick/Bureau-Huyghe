@@ -1,9 +1,9 @@
-import { Scale, FileText, Users, Search, Building } from 'lucide-react';
+import { Scale, FileText, Users, Search } from 'lucide-react';
 import { useLanguage } from '../../i18n/LanguageContext';
 import { Link } from 'react-router-dom';
 
 export default function LegalServicesPage() {
-  const { t } = useLanguage();
+  useLanguage();
 
   const services = [
     {

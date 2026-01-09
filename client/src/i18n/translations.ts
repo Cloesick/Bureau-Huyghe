@@ -1,4 +1,4 @@
-export type Language = 'nl' | 'en';
+export type Language = 'nl' | 'en' | 'fr';
 
 export const translations = {
   nl: {
@@ -666,6 +666,339 @@ export const translations = {
       a15: 'Tax certificates (such as no debt certificate, article 442bis certificate) can be requested via the eServices portal of the FPS Finance. These certificates are often required for government contracts or subsidy applications. We can request these for you.',
       q16: 'What is withholding tax and how do I declare it?',
       a16: 'Withholding tax is the tax on income from movable property (dividends, interest). The declaration is made via RV-on-web. The standard rate is 30%. We ensure correct declaration and optimize where possible.',
+    },
+  },
+fr: {
+    // Header
+    login: 'CONNEXION',
+    register: 'S\'INSCRIRE',
+    phone: 'T. +32 50 45 70 31',
+    tagline: 'Géomètre & Documentation Technique',
+    
+    // Navigation
+    nav: {
+      boekhouding: 'Arpentage',
+      fiscaliteit: 'Construction',
+      begeleiding: 'Juridique',
+      contact: 'Contact',
+    },
+    
+    // Hero
+    hero: {
+      title1: 'Géomètres et',
+      title2: 'Experts',
+      subtitle: 'Nous vous accompagnons dans tous les aspects de vos projets immobiliers. Du bornage à la documentation technique.',
+      cta: 'COMMENCER',
+      secondary: 'Nos services',
+    },
+    
+    // Data visualization
+    data: {
+      clientResults: 'Résultats clients',
+      fiscalSavings: 'Économies fiscales',
+      adminEfficiency: 'Efficacité administrative',
+      satisfaction: 'Satisfaction client',
+      clients: 'Clients',
+      years: 'Années',
+      saved: 'Économisé',
+      avgFiscalSavings: 'Économies moy.',
+      activeClients: 'Clients actifs',
+      yearsExperience: 'Années d\'expérience',
+    },
+    
+    // Services
+    services: {
+      title: 'Notre Expertise',
+      boekhouding: {
+        title: 'Arpentage',
+        description: 'Bornage de parcelles, levés topographiques, plans de division.',
+      },
+      fiscaliteit: {
+        title: 'Construction',
+        description: 'Implantation, mesurage de construction, plans as-built.',
+      },
+      begeleiding: {
+        title: 'Juridique',
+        description: 'États des lieux, expertises, conseils juridiques.',
+      },
+      readMore: 'en savoir plus',
+    },
+    
+    // About
+    about: {
+      title: 'Votre guide personnel à travers les faits et chiffres',
+      p1: 'Gérer vos mesurages et votre documentation de A à Z est une évidence pour nous. Notre vraie valeur ajoutée réside dans le partenariat personnel que nous construisons.',
+      p2: 'Travailler de manière proactive et réfléchir aux nouvelles opportunités est notre seconde nature. Toujours précis, avec un souci de durabilité et de discrétion.',
+      cta: 'Commencer aujourd\'hui',
+      whatWeDo: 'Ce que nous faisons',
+      services: [
+        'Bornage & levés topographiques',
+        'Mesurage de construction & as-built',
+        'États des lieux & expertises',
+        'Documentation technique & 3D',
+      ],
+    },
+    
+    // Platform
+    platform: {
+      title: 'Votre portail client numérique',
+      subtitle: 'Accès 24/7 à tous vos dossiers, où et quand vous le souhaitez.',
+      appointments: { title: 'Rendez-vous', description: 'Planifiez facilement un rendez-vous avec nos spécialistes.' },
+      assistant: { title: 'Assistant IA', description: 'Réponses instantanées à vos questions.' },
+      documents: { title: 'Documents', description: 'Téléchargez et consultez vos documents en ligne.' },
+      access: { title: 'Accès 24/7', description: 'Consultez votre statut quand cela vous convient.' },
+    },
+    
+    // Contact
+    contact: {
+      title: 'Contactez-nous',
+      subtitle: 'Vous avez des questions ou souhaitez plus d\'informations? Remplissez le formulaire et nous vous contacterons dès que possible.',
+      form: {
+        name: 'Nom',
+        email: 'E-mail',
+        phone: 'Téléphone',
+        company: 'Entreprise',
+        service: 'Service',
+        selectService: 'Sélectionnez un service',
+        message: 'Message',
+        submit: 'Envoyer le message',
+        sending: 'Envoi en cours...',
+        success: 'Merci! Nous vous contacterons dès que possible.',
+        error: 'Une erreur s\'est produite. Veuillez réessayer.',
+      },
+    },
+    
+    // CTA
+    cta: {
+      title: 'Prêt à commencer?',
+      subtitle: 'Inscrivez-vous aujourd\'hui et découvrez comment Bureau Huyghe gère vos mesurages.',
+      button: 'Inscription gratuite',
+    },
+    
+    // Footer
+    footer: {
+      description: 'Géomètre professionnel et documentation technique. Des bornages particuliers aux projets de construction complexes, Bureau Huyghe garantit des mesures précises.',
+      contact: 'Contact',
+      navigation: 'Navigation',
+      home: 'Accueil',
+      about: 'À propos',
+      team: 'Équipe',
+      rights: 'Tous droits réservés.',
+      cookies: 'Cookies',
+      privacy: 'Politique de confidentialité',
+      gdpr: 'Conforme RGPD',
+    },
+    
+    // Auth
+    auth: {
+      loginTitle: 'Connexion',
+      loginSubtitle: 'Bienvenue chez Bureau Huyghe',
+      email: 'Adresse e-mail',
+      password: 'Mot de passe',
+      loginButton: 'Se connecter',
+      noAccount: 'Pas encore de compte?',
+      registerHere: 'Inscrivez-vous ici',
+      registerTitle: 'Créer un compte',
+      registerSubtitle: 'Commencez votre expérience numérique',
+      firstName: 'Prénom',
+      lastName: 'Nom',
+      confirmPassword: 'Confirmer le mot de passe',
+      gdprConsent: 'J\'accepte la politique de confidentialité et consens au traitement de mes données conformément au RGPD.',
+      registerButton: 'S\'inscrire',
+      hasAccount: 'Vous avez déjà un compte?',
+      loginHere: 'Connectez-vous ici',
+      passwordMinLength: 'Minimum 8 caractères',
+      passwordMismatch: 'Les mots de passe ne correspondent pas',
+      passwordTooShort: 'Le mot de passe doit contenir au moins 8 caractères',
+      gdprRequired: 'Vous devez accepter la politique de confidentialité',
+      registering: 'Création du compte...',
+      error: 'Une erreur s\'est produite. Veuillez réessayer.',
+      sessionExpired: 'Session expirée. Veuillez vous reconnecter.',
+      networkError: 'Impossible de se connecter au serveur. Vérifiez votre connexion internet.',
+      invalidCredentials: 'Identifiants invalides. Vérifiez votre e-mail et mot de passe.',
+      emailExists: 'Cette adresse e-mail est déjà enregistrée.',
+      loginFailed: 'Échec de la connexion. Veuillez réessayer.',
+      registerFailed: 'Échec de l\'inscription. Veuillez réessayer.',
+    },
+
+    // Pages
+    pages: {
+      boekhouding: {
+        hero: 'Un géomètre qui réfléchit avec vous',
+        heroSub: 'Vous cherchez un partenaire géomètre à Bruges pour gérer efficacement vos mesurages? Nous sommes le point de contact pour les particuliers et les professionnels.',
+        intro: 'Nous rendons vos mesurages aussi efficaces que possible, en adoptant pleinement les nouvelles technologies.',
+        services: 'Nos services comprennent',
+        notDigital: 'Pas fan du 100% numérique?',
+        notDigitalText: 'Nous trouvons un équilibre parfait pour vos besoins. Toujours optimal, à temps et correct.',
+        internal: 'Service interne?',
+        internalText: 'Vous avez un service interne? Contactez-nous pour un second avis!',
+        contactUs: 'Contactez-nous',
+        contactSub: 'Prêt à passer au niveau supérieur?',
+        startNow: 'Commencer maintenant',
+        otherServices: 'Autres services',
+        readyToStart: 'Prêt à commencer?',
+        registerNow: 'Inscrivez-vous maintenant et accédez à notre portail client numérique.',
+      },
+      faq: {
+        title: 'Questions fréquentes',
+        subtitle: 'Trouvez rapidement des réponses aux questions les plus courantes.',
+        notFound: 'Votre question n\'est pas listée?',
+        contactUs: 'Contactez-nous',
+      },
+      calendly: {
+        title: 'Planifier un rendez-vous',
+        subtitle: 'Choisissez un moment qui vous convient et nous discuterons de votre situation.',
+      },
+    },
+
+    // Dashboard
+    dashboard: {
+      welcome: 'Bienvenue',
+      whatToDo: 'Que souhaitez-vous faire aujourd\'hui?',
+      makeAppointment: 'Prendre rendez-vous',
+      makeAppointmentDesc: 'Planifiez une réunion avec nos spécialistes',
+      askQuestion: 'Poser une question',
+      askQuestionDesc: 'Obtenez des réponses instantanées via notre assistant IA',
+      upcomingAppointments: 'Rendez-vous à venir',
+      viewAll: 'Voir tout',
+      noAppointments: 'Aucun rendez-vous à venir',
+      planAppointment: 'Planifier un rendez-vous',
+      confirmed: 'Confirmé',
+      pending: 'En attente',
+      receivedDocuments: 'Documents reçus',
+      fromOostboek: 'De Bureau Huyghe',
+      documentsFromAccountant: 'Documents de votre géomètre',
+      myUploads: 'Mes téléchargements',
+      uploadedByYou: 'Téléchargés par vous',
+      noDocumentsUploaded: 'Aucun document téléchargé',
+      clickToUpload: 'Cliquez pour télécharger',
+      orDragFiles: 'ou glissez les fichiers ici',
+      fileTypes: 'PDF, JPG, PNG, CSV jusqu\'à 10MB',
+      vatReturn: 'Déclaration TVA',
+      nextDeadline: 'Prochaine échéance',
+      annualAccounts: 'Comptes annuels',
+      inProgress: 'En cours',
+      invoices: 'Factures',
+      invoicesWaiting: 'factures en attente d\'approbation',
+      delete: 'Supprimer',
+    },
+
+    // Appointments
+    appointments: {
+      title: 'Rendez-vous',
+      subtitle: 'Planifiez une réunion avec nos spécialistes',
+      backToDashboard: 'Retour au tableau de bord',
+      selectSpecialization: 'Sélectionnez une spécialisation',
+      accounting: 'Arpentage',
+      taxServices: 'Construction',
+      advisory: 'Juridique',
+      selectSpecialist: 'Choisissez un spécialiste',
+      availableSpecialists: 'Spécialistes disponibles',
+      scheduleWith: 'Planifier un rendez-vous avec',
+      chooseDateTime: 'Choisissez la date et l\'heure',
+      confirmAppointment: 'Confirmer le rendez-vous',
+      appointmentConfirmed: 'Rendez-vous confirmé!',
+      goToDashboard: 'Aller au tableau de bord',
+    },
+
+    // Chat
+    chat: {
+      title: 'Chat',
+      subtitle: 'Posez votre question à notre assistant IA',
+      backToDashboard: 'Retour au tableau de bord',
+      typeQuestion: 'Tapez votre question...',
+      welcome: 'Bienvenue chez Bureau Huyghe! 👋 Comment puis-je vous aider aujourd\'hui?\n\nChoisissez un sujet ci-dessous ou tapez votre question:',
+      relevantLinks: 'Liens pertinents:',
+      sources: 'Sources',
+      makeAppointment: 'Prendre rendez-vous',
+      contactUs: 'Nous contacter',
+      vatReturn: 'Déclaration TVA',
+      becomeStarter: 'Créer une entreprise',
+      annualAccounts: 'Comptes annuels',
+      corporateTax: 'Impôt des sociétés',
+      gdprPrivacy: 'RGPD confidentialité',
+      pricing: 'Tarifs',
+      contractor30bis: 'Entrepreneur 30bis',
+      usefulLinks: 'Liens utiles',
+      yesAppointment: 'Oui, je souhaite un rendez-vous',
+      noMoreQuestions: 'Non, j\'ai une autre question',
+    },
+
+    // Document Upload
+    documentUpload: {
+      processDocument: 'Traiter le document',
+      whatTypeDocument: 'Quel type de document est-ce?',
+      file: 'Fichier',
+      invoice: 'Facture',
+      invoiceDesc: 'Facture d\'achat ou de vente',
+      receipt: 'Reçu / Note de frais',
+      receiptDesc: 'Ticket de caisse ou justificatif',
+      bankStatement: 'Relevé bancaire',
+      bankStatementDesc: 'Extraits de compte',
+      contract: 'Contrat / Accord',
+      contractDesc: 'Contrats de location, de travail ou autres',
+      taxDocument: 'Document fiscal',
+      taxDocumentDesc: 'Déclaration TVA, avis d\'imposition, attestation',
+      annualAccounts: 'Comptes annuels',
+      annualAccountsDesc: 'Bilan, compte de résultat',
+      payslip: 'Fiche de paie',
+      payslipDesc: 'Bulletin de salaire',
+      otherDocument: 'Autre document',
+      otherDocumentDesc: 'Autres documents',
+      fillInDetails: 'Remplissez les détails',
+      back: 'Retour',
+      check: 'Vérifier',
+      checkYourData: 'Vérifiez vos données',
+      confirmCorrect: 'Confirmez que tout est correct',
+      adjust: 'Ajuster',
+      confirm: 'Confirmer',
+      uploading: 'Téléchargement...',
+      select: 'Sélectionner...',
+    },
+
+    // Layout
+    layout: {
+      dashboard: 'Tableau de bord',
+      appointments: 'Rendez-vous',
+      chat: 'Chat',
+      welcome: 'Bienvenue',
+      logout: 'Déconnexion',
+    },
+
+    // FAQ items
+    faqItems: {
+      q1: 'Combien coûte un géomètre chez Bureau Huyghe?',
+      a1: 'Nos tarifs sont transparents et dépendent de votre situation. Bornage de parcelle: à partir de 500€. Levé topographique: à partir de 800€. Demandez un devis gratuit pour un prix personnalisé.',
+      q2: 'Combien de temps prend un bornage?',
+      a2: 'Un bornage standard prend généralement 1 à 2 semaines, de la demande à la remise du procès-verbal. Pour les cas urgents, nous pouvons accélérer le processus.',
+      q3: 'Puis-je suivre mon projet en ligne?',
+      a3: 'Absolument! Via notre portail client, vous avez accès 24/7 à vos documents, plans et l\'état d\'avancement de votre projet.',
+      q4: 'Quelle est la différence entre un bornage et un levé topographique?',
+      a4: 'Le bornage détermine les limites légales de votre propriété avec des bornes officielles. Le levé topographique mesure les caractéristiques du terrain (altitudes, constructions, végétation) pour des projets de construction.',
+      q5: 'Aidez-vous aussi pour les permis de construire?',
+      a5: 'Certainement! Nous fournissons tous les plans et documents techniques nécessaires pour votre demande de permis.',
+      q6: 'Combien de temps pour obtenir un rendez-vous?',
+      a6: 'Pour les affaires urgentes, nous essayons de vous recevoir dans les 48 heures. Pour une première rencontre, vous pouvez généralement venir dans la semaine.',
+      q7: 'Travaillez-vous avec des logiciels spécifiques?',
+      a7: 'Nous utilisons les dernières technologies: GPS RTK, scanner 3D, drones et logiciels CAO professionnels pour des résultats précis.',
+      q8: 'Que se passe-t-il en cas de litige avec un voisin?',
+      a8: 'Nous pouvons intervenir comme expert neutre pour déterminer les limites exactes. Notre procès-verbal a valeur légale et peut être utilisé en justice si nécessaire.',
+      q9: 'Comment se déroule un état des lieux?',
+      a9: 'Nous documentons l\'état complet du bien avec photos, descriptions et mesures. Le rapport est remis dans les 5 jours ouvrables.',
+      q10: 'Intervenez-vous dans toute la Belgique?',
+      a10: 'Nous intervenons principalement en Flandre occidentale et orientale. Pour d\'autres régions, contactez-nous pour discuter des possibilités.',
+      q11: 'Qu\'est-ce qu\'un plan as-built?',
+      a11: 'Un plan as-built documente la construction telle qu\'elle a été réellement réalisée, incluant toutes les modifications par rapport aux plans initiaux.',
+      q12: 'Proposez-vous des scans 3D?',
+      a12: 'Oui, nous proposons des scans 3D pour la documentation de bâtiments existants, la modélisation BIM et les projets de rénovation.',
+      q13: 'Comment puis-je payer?',
+      a13: 'Nous acceptons les virements bancaires et proposons des facilités de paiement pour les projets importants. Une facture détaillée est toujours fournie.',
+      q14: 'Les plans sont-ils fournis en format numérique?',
+      a14: 'Oui, tous les plans sont fournis en PDF et DWG (AutoCAD). D\'autres formats sont disponibles sur demande.',
+      q15: 'Qu\'est-ce qu\'un procès-verbal de bornage?',
+      a15: 'C\'est un document officiel signé par toutes les parties qui atteste des limites de propriété. Il a valeur légale et est enregistré.',
+      q16: 'Travaillez-vous avec les notaires?',
+      a16: 'Oui, nous collaborons régulièrement avec les notaires pour les actes de vente, divisions et servitudes.',
     },
   },
 } as const;

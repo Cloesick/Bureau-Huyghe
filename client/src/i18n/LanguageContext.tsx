@@ -1,7 +1,7 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { translations, Language } from './translations';
 
-type TranslationType = typeof translations['nl'] | typeof translations['en'];
+type TranslationType = typeof translations['nl'] | typeof translations['en'] | typeof translations['fr'];
 
 interface LanguageContextType {
   language: Language;
@@ -14,18 +14,19 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [language, setLanguageState] = useState<Language>(() => {
     // Check localStorage first
-    const saved = localStorage.getItem('oostboek-language');
-    if (saved === 'en' || saved === 'nl') return saved;
+    const saved = localStorage.getItem('bureau-huyghe-language');
+    if (saved === 'en' || saved === 'nl' || saved === 'fr') return saved;
     
     // Check browser language
     const browserLang = navigator.language.toLowerCase();
     if (browserLang.startsWith('nl')) return 'nl';
+    if (browserLang.startsWith('fr')) return 'fr';
     return 'en'; // Default to English for international users
   });
 
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);
-    localStorage.setItem('oostboek-language', lang);
+    localStorage.setItem('bureau-huyghe-language', lang);
     document.documentElement.lang = lang;
   };
 
@@ -65,6 +66,16 @@ export function LanguageSwitcher({ className = '' }: { className?: string }) {
         }`}
       >
         NL
+      </button>
+      <button
+        onClick={() => setLanguage('fr')}
+        className={`px-2 py-1 text-xs font-bold rounded transition-colors ${
+          language === 'fr' 
+            ? 'bg-accent-500 text-white' 
+            : 'text-primary-300 hover:text-white'
+        }`}
+      >
+        FR
       </button>
       <button
         onClick={() => setLanguage('en')}

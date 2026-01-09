@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X, Facebook, Linkedin, Instagram, Twitter, Youtube, Globe, Phone, Calendar } from 'lucide-react';
+import { Menu, X, Facebook, Linkedin, Instagram, Twitter, Youtube, Phone, Calendar } from 'lucide-react';
+import { LanguageSwitcher } from '../i18n/LanguageContext';
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -11,7 +12,7 @@ export default function Header() {
     { name: 'Instagram', icon: Instagram, url: 'https://instagram.com/bureauhuyghe' },
     { name: 'Twitter', icon: Twitter, url: 'https://twitter.com/bureauhuyghe' },
     { name: 'YouTube', icon: Youtube, url: 'https://youtube.com/c/bureauhuyghe' },
-    { name: 'Website', icon: Globe, url: 'https://bureau-huyghe.be' }
+    { name: 'Website', icon: Youtube, url: 'https://bureau-huyghe.be' }
   ];
 
   return (
@@ -53,21 +54,7 @@ export default function Header() {
                   </a>
                 );
               })}
-              {social.slice(3).map((platform) => {
-                const Icon = platform.icon;
-                return (
-                  <a
-                    key={platform.name}
-                    href={platform.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hidden sm:block text-primary-100 hover:text-accent-300 transition-colors"
-                    aria-label={platform.name}
-                  >
-                    <Icon className="w-4 h-4" />
-                  </a>
-                );
-              })}
+              <LanguageSwitcher />
             </div>
           </div>
         </div>

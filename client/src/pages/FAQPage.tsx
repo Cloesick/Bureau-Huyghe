@@ -9,7 +9,7 @@ interface FAQItem {
   category: 'general' | 'boekhouding' | 'fiscaliteit' | 'begeleiding';
 }
 
-const faqData: { nl: FAQItem[]; en: FAQItem[] } = {
+const faqData: { nl: FAQItem[]; en: FAQItem[]; fr: FAQItem[] } = {
   nl: [
     // General
     {
@@ -228,6 +228,112 @@ const faqData: { nl: FAQItem[]; en: FAQItem[] } = {
       answer: 'Yes, wealth planning is part of our advisory services. We advise on the optimal structure of your assets, taking into account tax aspects and your personal situation.',
     },
   ],
+  fr: [
+    // Général
+    {
+      category: 'general',
+      question: 'Qui est Bureau Huyghe?',
+      answer: 'Bureau Huyghe est un cabinet de géomètres à Bruges avec plus de 25 ans d\'expérience. Notre équipe enthousiaste est prête à gérer tous vos besoins en arpentage et documentation technique.',
+    },
+    {
+      category: 'general',
+      question: 'Pour qui Bureau Huyghe est-il adapté?',
+      answer: 'Nous sommes le point de contact pour les particuliers et les professionnels. Du bornage de parcelle aux projets de construction complexes, nous accompagnons tous types de clients.',
+    },
+    {
+      category: 'general',
+      question: 'Où est situé Bureau Huyghe?',
+      answer: 'Notre bureau est situé à Bruges. Vous pouvez nous joindre par téléphone au +32 50 45 70 31 ou par e-mail à info@bureau-huyghe.be.',
+    },
+    {
+      category: 'general',
+      question: 'Comment puis-je contacter Bureau Huyghe?',
+      answer: 'Vous pouvez nous joindre par téléphone, e-mail ou via le formulaire de contact sur notre site web. Nous planifions volontiers un premier rendez-vous sans engagement.',
+    },
+    {
+      category: 'general',
+      question: 'Bureau Huyghe travaille-t-il numériquement?',
+      answer: 'Oui, nous utilisons les dernières technologies: GPS RTK, scanner 3D, drones et logiciels CAO professionnels. Tous les documents sont disponibles via notre portail client.',
+    },
+    // Arpentage
+    {
+      category: 'boekhouding',
+      question: 'Quels services d\'arpentage Bureau Huyghe propose-t-il?',
+      answer: 'Nous proposons: bornage de parcelles, levés topographiques, plans de division, implantation de construction et documentation technique.',
+    },
+    {
+      category: 'boekhouding',
+      question: 'Comment se déroule un bornage?',
+      answer: 'Après votre demande, nous consultons les documents cadastraux, effectuons les mesures sur le terrain, plaçons les bornes et rédigeons un procès-verbal officiel signé par toutes les parties.',
+    },
+    {
+      category: 'boekhouding',
+      question: 'Combien de temps prend un bornage?',
+      answer: 'Un bornage standard prend généralement 1 à 2 semaines. Pour les cas urgents, nous pouvons accélérer le processus.',
+    },
+    {
+      category: 'boekhouding',
+      question: 'Le procès-verbal de bornage a-t-il une valeur légale?',
+      answer: 'Oui, le procès-verbal de bornage est un document officiel qui a valeur légale et peut être utilisé en justice si nécessaire.',
+    },
+    {
+      category: 'boekhouding',
+      question: 'Proposez-vous des scans 3D?',
+      answer: 'Oui, nous proposons des scans 3D pour la documentation de bâtiments existants, la modélisation BIM et les projets de rénovation.',
+    },
+    // Construction
+    {
+      category: 'fiscaliteit',
+      question: 'Quels services de construction Bureau Huyghe propose-t-il?',
+      answer: 'Nous proposons: implantation de construction, mesurage de construction, plans as-built, contrôle de conformité et documentation technique.',
+    },
+    {
+      category: 'fiscaliteit',
+      question: 'Qu\'est-ce qu\'un plan as-built?',
+      answer: 'Un plan as-built documente la construction telle qu\'elle a été réellement réalisée, incluant toutes les modifications par rapport aux plans initiaux.',
+    },
+    {
+      category: 'fiscaliteit',
+      question: 'Aidez-vous pour les permis de construire?',
+      answer: 'Oui, nous fournissons tous les plans et documents techniques nécessaires pour votre demande de permis de construire.',
+    },
+    {
+      category: 'fiscaliteit',
+      question: 'Intervenez-vous pendant la construction?',
+      answer: 'Oui, nous pouvons intervenir à différentes étapes: implantation initiale, contrôles intermédiaires et relevé final as-built.',
+    },
+    {
+      category: 'fiscaliteit',
+      question: 'Les plans sont-ils fournis en format numérique?',
+      answer: 'Oui, tous les plans sont fournis en PDF et DWG (AutoCAD). D\'autres formats sont disponibles sur demande.',
+    },
+    // Juridique
+    {
+      category: 'begeleiding',
+      question: 'Quels services juridiques Bureau Huyghe propose-t-il?',
+      answer: 'Nous proposons: états des lieux, expertises, conseils juridiques en matière immobilière, assistance en cas de litige de voisinage.',
+    },
+    {
+      category: 'begeleiding',
+      question: 'Que faire en cas de litige avec un voisin?',
+      answer: 'Nous pouvons intervenir comme expert neutre pour déterminer les limites exactes de propriété. Notre procès-verbal a valeur légale.',
+    },
+    {
+      category: 'begeleiding',
+      question: 'Réalisez-vous des états des lieux?',
+      answer: 'Oui, nous documentons l\'état complet du bien avec photos, descriptions et mesures. Le rapport est remis dans les 5 jours ouvrables.',
+    },
+    {
+      category: 'begeleiding',
+      question: 'Travaillez-vous avec les notaires?',
+      answer: 'Oui, nous collaborons régulièrement avec les notaires pour les actes de vente, divisions et servitudes.',
+    },
+    {
+      category: 'begeleiding',
+      question: 'Pouvez-vous intervenir comme expert judiciaire?',
+      answer: 'Oui, nos géomètres peuvent être désignés comme experts judiciaires pour des litiges immobiliers.',
+    },
+  ],
 };
 
 const categoryLabels = {
@@ -242,6 +348,12 @@ const categoryLabels = {
     boekhouding: 'Accounting',
     fiscaliteit: 'Tax Services',
     begeleiding: 'Advisory',
+  },
+  fr: {
+    general: 'Général',
+    boekhouding: 'Arpentage',
+    fiscaliteit: 'Construction',
+    begeleiding: 'Juridique',
   },
 };
 

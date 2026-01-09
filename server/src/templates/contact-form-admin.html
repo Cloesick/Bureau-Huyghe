@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .container { max-width: 600px; margin: 0 auto; font-family: Arial, sans-serif; }
+    .header { background: #004c99; color: white; padding: 20px; }
+    .content { padding: 20px; }
+    .info-box { background: #f5f5f5; padding: 15px; margin: 10px 0; border-radius: 5px; }
+    .button { background: #004c99; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h2>Nieuwe Contact Aanvraag</h2>
+      <p>Categorie: {{category}}</p>
+    </div>
+    <div class="content">
+      <h3>Klant Informatie</h3>
+      <div class="info-box">
+        <p><strong>Naam:</strong> {{name}}</p>
+        <p><strong>Email:</strong> {{email}}</p>
+        {{#if phone}}<p><strong>Telefoon:</strong> {{phone}}</p>{{/if}}
+        {{#if company}}<p><strong>Bedrijf:</strong> {{company}}</p>{{/if}}
+        {{#if address}}<p><strong>Adres:</strong> {{address}}</p>{{/if}}
+      </div>
+
+      <h3>Bericht</h3>
+      <div class="info-box">
+        <p>{{message}}</p>
+      </div>
+
+      {{#if files}}
+      <h3>Bijlagen</h3>
+      <div class="info-box">
+        {{#each files}}
+        <p>📎 <a href="{{url}}">{{fileName}}</a></p>
+        {{/each}}
+      </div>
+      {{/if}}
+
+      {{#if serviceFields}}
+      <h3>Service Details</h3>
+      <div class="info-box">
+        {{#each serviceFields}}
+        <p><strong>{{@key}}:</strong> {{this}}</p>
+        {{/each}}
+      </div>
+      {{/if}}
+
+      <p style="margin-top: 20px;">
+        <a href="{{adminUrl}}" class="button">Open in Admin Dashboard</a>
+      </p>
+
+      <p style="color: #666; font-size: 12px; margin-top: 20px;">
+        Ontvangen op {{submissionDate}}
+      </p>
+    </div>
+  </div>
+</body>
+</html>

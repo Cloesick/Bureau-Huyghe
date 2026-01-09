@@ -1,0 +1,131 @@
+{
+  "version": "1.0",
+  "rules": {
+    "testing": {
+      "e2e": {
+        "required": true,
+        "minCoverage": 80,
+        "critical_paths": [
+          "authentication",
+          "document_management",
+          "contact_forms",
+          "user_onboarding"
+        ],
+        "config": {
+          "test_runner": "cypress",
+          "retry_attempts": 2,
+          "timeout": 30000,
+          "viewport_sizes": ["mobile", "tablet", "desktop"]
+        }
+      }
+    },
+    "ci_cd": {
+      "required": true,
+      "pipeline": {
+        "stages": [
+          {
+            "name": "test",
+            "required": true,
+            "steps": ["lint", "type-check", "unit-tests", "e2e-tests"]
+          },
+          {
+            "name": "security",
+            "required": true,
+            "steps": ["dependency-scan", "secret-scan", "sast"]
+          },
+          {
+            "name": "build",
+            "required": true,
+            "steps": ["build-frontend", "build-backend", "docker-build"]
+          },
+          {
+            "name": "deploy",
+            "environments": ["staging", "production"],
+            "required_approvals": {
+              "staging": 0,
+              "production": 1
+            },
+            "rollback_strategy": "automatic",
+            "health_checks": true
+          }
+        ]
+      },
+      "branch_protection": {
+        "main": {
+          "require_reviews": true,
+          "required_checks": ["test", "security", "build"],
+          "auto_deploy": ["staging"]
+        }
+      }
+    },
+    "monitoring": {
+      "required": true,
+      "alerts": {
+        "test_failures": {
+          "threshold": 1,
+          "notify": ["dev_team"]
+        },
+        "deployment_failures": {
+          "threshold": 1,
+          "notify": ["dev_team", "ops_team"]
+        },
+        "flaky_tests": {
+          "threshold": 0.05,
+          "period": "7d",
+          "action": "quarantine"
+        }
+      }
+    },
+    "quality_gates": {
+      "test_coverage": {
+        "unit": 80,
+        "e2e": 80,
+        "critical_paths": 100
+      },
+      "performance": {
+        "lighthouse_score": {
+          "performance": 90,
+          "accessibility": 90,
+          "best_practices": 90,
+          "seo": 90
+        },
+        "load_time": {
+          "p95": 3000
+        }
+      }
+    },
+    "documentation": {
+      "required": true,
+      "must_include": [
+        "test_setup.md",
+        "ci_cd_pipeline.md",
+        "deployment_process.md",
+        "monitoring_setup.md"
+      ]
+    }
+  },
+  "enforcement": {
+    "block_merge": true,
+    "block_deploy": true,
+    "notifications": {
+      "slack": true,
+      "email": true
+    },
+    "exceptions": {
+      "require_approval": true,
+      "max_duration": "24h",
+      "must_document": true
+    }
+  },
+  "reporting": {
+    "frequency": "daily",
+    "metrics": [
+      "test_coverage",
+      "build_success_rate",
+      "deployment_success_rate",
+      "mean_time_to_recovery",
+      "change_failure_rate"
+    ],
+    "dashboards": ["quality", "deployment", "testing"]
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "name": "bureau-huyghe",
+  "version": "1.0.0",
+  "description": "A modern, responsive web application for Bureau Huyghe land surveying services, providing comprehensive information and client interaction capabilities.",
+  "type": "module",
+  "scripts": {
+    "dev": "npm run dev --prefix client",
+    "dev:client": "npm run dev --prefix client",
+    "dev:server": "npm run dev --prefix server",
+    "build": "npm run build --prefix client",
+    "build:client": "npm run build --prefix client",
+    "build:server": "npm run build --prefix server",
+    "preview": "npm run preview --prefix client",
+    "lint": "npm run lint --prefix client",
+    "test": "npm run test --prefix client",
+    "test:e2e": "npm run test:e2e --prefix client"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@tanstack/react-query": "^5.59.0",
+    "@types/react-dropzone": "^4.2.2",
+    "@types/sharp": "^0.31.1",
+    "lucide-react": "^0.454.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-dropzone": "^14.3.8",
+    "react-router-dom": "^6.28.0",
+    "sharp": "^0.34.5",
+    "zustand": "^5.0.1"
+  },
+  "devDependencies": {
+    "@testing-library/cypress": "^10.1.0",
+    "@types/cypress-axe": "^0.8.0",
+    "@types/node": "^24.10.2",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.3",
+    "autoprefixer": "^10.4.20",
+    "axe-core": "^4.11.0",
+    "cypress": "^15.8.1",
+    "cypress-axe": "^1.7.0",
+    "cypress-real-events": "^1.15.0",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^3.4.14",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.10"
+  }
+}

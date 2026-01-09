@@ -1,0 +1,7 @@
+{
+  "name": "Test User",
+  "email": "test@example.com",
+  "phone": "0470123456",
+  "company": "Test Company",
+  "message": "This is a test message"
+}

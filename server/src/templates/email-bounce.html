@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .container { max-width: 600px; margin: 0 auto; font-family: Arial, sans-serif; }
+    .header { background: #ff4444; color: white; padding: 20px; }
+    .content { padding: 20px; }
+    .info-box { background: #fff4f4; padding: 15px; margin: 10px 0; border-radius: 5px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h2>⚠️ Email Bounce Notification</h2>
+    </div>
+    <div class="content">
+      <p><strong>Een email kon niet worden afgeleverd:</strong></p>
+
+      <div class="info-box">
+        <p><strong>Tracking ID:</strong> {{trackingId}}</p>
+        <p><strong>Reden:</strong> {{reason}}</p>
+      </div>
+
+      <p>Controleer het e-mailadres en probeer opnieuw contact op te nemen met de klant.</p>
+
+      <p style="color: #666; font-size: 12px; margin-top: 20px;">
+        Bureau Huyghe - Email Monitoring System
+      </p>
+    </div>
+  </div>
+</body>
+</html>

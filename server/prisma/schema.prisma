@@ -1,0 +1,152 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  password      String
+  firstName     String
+  lastName      String
+  phone         String?
+  company       String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  appointments  Appointment[]
+  projects      Project[]
+}
+
+model Project {
+  id            String    @id @default(cuid())
+  title         String
+  description   String
+  status        ProjectStatus
+  type          ProjectType
+  address       String
+  client        User      @relation(fields: [clientId], references: [id])
+  clientId      String
+  startDate     DateTime?
+  endDate       DateTime?
+  documents     Document[]
+  appointments  Appointment[]
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+model Document {
+  id            String    @id @default(cuid())
+  title         String
+  type          DocumentType
+  fileUrl       String
+  project       Project   @relation(fields: [projectId], references: [id])
+  projectId     String
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+model Appointment {
+  id            String    @id @default(cuid())
+  date          DateTime
+  type          AppointmentType
+  status        AppointmentStatus
+  notes         String?
+  client        User      @relation(fields: [clientId], references: [id])
+  clientId      String
+  project       Project?  @relation(fields: [projectId], references: [id])
+  projectId     String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+model ContactForm {
+  id            String    @id @default(cuid())
+  name          String
+  email         String
+  phone         String?
+  company       String?
+  address       String?
+  category      ServiceCategory
+  message       String
+  status        ContactStatus @default(NEW)
+  // Service-specific fields
+  propertyFields Json?
+  constructionFields Json?
+  technicalFields Json?
+  legalFields   Json?
+  // Files
+  files         ContactFile[]
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+model ContactFile {
+  id            String    @id @default(cuid())
+  fileId        String    // UUID from file system
+  fileName      String
+  url           String
+  contact       ContactForm @relation(fields: [contactId], references: [id])
+  contactId     String
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+enum ProjectStatus {
+  PENDING
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+}
+
+enum ProjectType {
+  PROPERTY_SURVEY
+  CONSTRUCTION_SURVEY
+  TECHNICAL_DOCUMENTATION
+  LEGAL_SERVICE
+}
+
+enum DocumentType {
+  SURVEY_PLAN
+  TECHNICAL_DRAWING
+  LEGAL_DOCUMENT
+  REPORT
+  CERTIFICATE
+  OTHER
+}
+
+enum AppointmentType {
+  INITIAL_CONSULTATION
+  SITE_SURVEY
+  PROGRESS_MEETING
+  DOCUMENT_DELIVERY
+  LEGAL_CONSULTATION
+}
+
+enum AppointmentStatus {
+  SCHEDULED
+  CONFIRMED
+  COMPLETED
+  CANCELLED
+}
+
+enum ServiceCategory {
+  PROPERTY
+  CONSTRUCTION
+  TECHNICAL
+  LEGAL
+  GENERAL
+}
+
+enum ContactStatus {
+  NEW
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+}

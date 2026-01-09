@@ -9,7 +9,7 @@ import CertificeringenPage from './pages/CertificeringenPage';
 import JuridischPage from './pages/JuridischPage';
 import OffertePage from './pages/OffertePage';
 import PortfolioPage from './pages/PortfolioPage';
-import { AdminDashboard, AdminOverview, AdminPortfolio, AdminLeads, AdminContent } from './pages/admin';
+import { AdminDashboard, AdminOverview, AdminPortfolio, AdminLeads, AdminContent, AdminProjects } from './pages/admin';
 
 function App() {
   return (
@@ -28,6 +28,7 @@ function App() {
       {/* Admin Routes */}
       <Route path="/admin" element={<AdminDashboard />}>
         <Route index element={<AdminOverview />} />
+        <Route path="projects" element={<AdminProjects />} />
         <Route path="portfolio" element={<AdminPortfolio />} />
         <Route path="leads" element={<AdminLeads />} />
         <Route path="content" element={<AdminContent />} />

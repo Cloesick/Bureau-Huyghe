@@ -16,9 +16,9 @@ import {
 
 const navigation = [
   { name: 'Overzicht', href: '/admin', icon: LayoutDashboard },
+  { name: 'Projecten', href: '/admin/projects', icon: FileText },
   { name: 'Portfolio', href: '/admin/portfolio', icon: Images },
   { name: 'Leads & Aanvragen', href: '/admin/leads', icon: MessageSquare },
-  { name: 'Content', href: '/admin/content', icon: FileText },
   { name: 'Gebruikers', href: '/admin/users', icon: Users },
   { name: 'Instellingen', href: '/admin/settings', icon: Settings },
 ];

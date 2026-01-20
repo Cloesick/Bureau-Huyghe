@@ -4,10 +4,6 @@ import path from 'path';
 import fs from 'fs';
 import { v4 as uuidv4 } from 'uuid';
 import sharp from 'sharp';
-import { PrismaClient } from '@prisma/client';
-import { sendAdminNotification } from '../services/emailService';
-
-const prisma = new PrismaClient();
 
 const router = express.Router();
 
@@ -167,44 +163,6 @@ router.delete('/image/:category/:filename', async (req: Request, res: Response) 
   } catch (error) {
     console.error('Image deletion failed:', error);
     res.status(500).json({ error: 'Image deletion failed' });
-  }
-});
-
-// Handle contact form submission
-router.post('/contact', async (req: Request, res: Response) => {
-  try {
-    const { name, email, phone, company, message, files } = req.body;
-
-    // Save to database (using your preferred ORM/database)
-    const contact = await prisma.contact.create({
-      data: {
-        name,
-        email,
-        phone,
-        company,
-        message,
-        files: {
-          create: files.map((file: any) => ({
-            fileId: file.id,
-            fileName: file.name,
-            url: file.url
-          }))
-        }
-      }
-    });
-
-    // Send notification email to admin
-    await sendAdminNotification({
-      contactId: contact.id,
-      name,
-      email,
-      hasFiles: files.length > 0
-    });
-
-    res.json({ success: true });
-  } catch (error) {
-    console.error('Contact form submission failed:', error);
-    res.status(500).json({ error: 'Form submission failed' });
   }
 });
 

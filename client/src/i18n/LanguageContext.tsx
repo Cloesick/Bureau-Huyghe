@@ -14,7 +14,7 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [language, setLanguageState] = useState<Language>(() => {
     // Check localStorage first
-    const saved = localStorage.getItem('bureau-huyghe-language');
+    const saved = localStorage.getItem('language');
     if (saved === 'en' || saved === 'nl' || saved === 'fr') return saved;
     
     // Check browser language
@@ -26,7 +26,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);
-    localStorage.setItem('bureau-huyghe-language', lang);
+    localStorage.setItem('language', lang);
     document.documentElement.lang = lang;
   };
 
@@ -56,14 +56,15 @@ export function LanguageSwitcher({ className = '' }: { className?: string }) {
   const { language, setLanguage } = useLanguage();
 
   return (
-    <div className={`flex items-center gap-1 ${className}`}>
+    <div className={`flex items-center gap-1 ${className}`} data-test="language-switcher">
       <button
         onClick={() => setLanguage('nl')}
         className={`px-2 py-1 text-xs font-bold rounded transition-colors ${
           language === 'nl' 
-            ? 'bg-accent-500 text-white' 
+            ? 'bg-white text-primary-600' 
             : 'text-primary-300 hover:text-white'
         }`}
+        data-test="lang-nl"
       >
         NL
       </button>
@@ -71,9 +72,10 @@ export function LanguageSwitcher({ className = '' }: { className?: string }) {
         onClick={() => setLanguage('fr')}
         className={`px-2 py-1 text-xs font-bold rounded transition-colors ${
           language === 'fr' 
-            ? 'bg-accent-500 text-white' 
+            ? 'bg-white text-primary-600' 
             : 'text-primary-300 hover:text-white'
         }`}
+        data-test="lang-fr"
       >
         FR
       </button>
@@ -81,9 +83,10 @@ export function LanguageSwitcher({ className = '' }: { className?: string }) {
         onClick={() => setLanguage('en')}
         className={`px-2 py-1 text-xs font-bold rounded transition-colors ${
           language === 'en' 
-            ? 'bg-accent-500 text-white' 
+            ? 'bg-white text-primary-600' 
             : 'text-primary-300 hover:text-white'
         }`}
+        data-test="lang-en"
       >
         EN
       </button>

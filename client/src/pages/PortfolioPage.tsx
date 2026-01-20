@@ -12,8 +12,10 @@ import {
   portfolioCategories, 
   defaultPortfolioProjects 
 } from '../types/portfolio';
+import { useLanguage } from '../i18n/LanguageContext';
 
 export default function PortfolioPage() {
+  const { t } = useLanguage();
   const { user } = useAuthStore();
   const isAdmin = user?.email?.includes('admin') || user?.email?.includes('bureau-huyghe');
   
@@ -62,11 +64,10 @@ export default function PortfolioPage() {
         <div className="max-w-7xl mx-auto px-4">
           <div className="max-w-3xl">
             <h1 className="text-3xl md:text-5xl font-bold mb-6">
-              Onze Projecten
+              {t.pages.portfolio.title}
             </h1>
             <p className="text-lg md:text-xl text-primary-100 mb-8">
-              Ontdek een selectie van onze gerealiseerde projecten. Van perceelafpaling tot 
-              3D-scanning, wij leveren nauwkeurig werk voor elke opdracht.
+              {t.pages.portfolio.heroText}
             </p>
             {isAdmin && (
               <button
@@ -74,7 +75,7 @@ export default function PortfolioPage() {
                 className="inline-flex items-center gap-2 bg-accent-500 text-white px-4 py-2 rounded-lg font-medium hover:bg-accent-600 transition-colors"
               >
                 <Upload className="w-4 h-4" />
-                Projecten Beheren
+                {t.pages.portfolio.manageProjects}
               </button>
             )}
           </div>
@@ -90,7 +91,7 @@ export default function PortfolioPage() {
       {selectedCategory === 'all' && featuredProjects.length > 0 && (
         <section className="py-12 bg-gray-50">
           <div className="max-w-7xl mx-auto px-4">
-            <h2 className="text-2xl font-bold text-gray-900 mb-8">Uitgelichte Projecten</h2>
+            <h2 className="text-2xl font-bold text-gray-900 mb-8">{t.pages.portfolio.featuredProjects}</h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {featuredProjects.slice(0, 3).map((project) => (
                 <FeaturedProjectCard 
@@ -110,14 +111,14 @@ export default function PortfolioPage() {
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center gap-2 mb-4">
             <Filter className="w-5 h-5 text-gray-500" />
-            <span className="font-medium text-gray-700">Filter op categorie:</span>
+            <span className="font-medium text-gray-700">{t.pages.portfolio.filterByCategory}:</span>
           </div>
           <div className="flex flex-wrap gap-2">
             <FilterButton
               active={selectedCategory === 'all'}
               onClick={() => setSelectedCategory('all')}
             >
-              Alle projecten ({projects.length})
+              {t.pages.portfolio.allProjects} ({projects.length})
             </FilterButton>
             {(Object.keys(portfolioCategories) as PortfolioCategory[]).map((cat) => {
               const count = projects.filter(p => p.category === cat).length;
@@ -142,7 +143,7 @@ export default function PortfolioPage() {
           {filteredProjects.length === 0 ? (
             <div className="text-center py-16">
               <ImageIcon className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-              <p className="text-gray-500 text-lg">Geen projecten gevonden in deze categorie.</p>
+              <p className="text-gray-500 text-lg">{t.pages.portfolio.noProjectsFound}</p>
             </div>
           ) : (
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -163,24 +164,24 @@ export default function PortfolioPage() {
       <section className="bg-primary-900 text-white py-16">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-2xl md:text-3xl font-bold mb-4">
-            Heeft u een project in gedachten?
+            {t.pages.portfolio.ctaTitle}
           </h2>
           <p className="text-primary-200 mb-8 text-lg">
-            Neem contact op voor een vrijblijvende offerte. Wij bespreken graag uw project.
+            {t.pages.portfolio.ctaText}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to="/offerte"
               className="inline-flex items-center justify-center gap-2 bg-accent-500 text-white px-6 py-3 rounded-lg font-bold hover:bg-accent-600 transition-colors"
             >
-              Offerte Aanvragen
+              {t.requestQuote}
               <ArrowRight className="w-5 h-5" />
             </Link>
             <Link
               to="/contact"
               className="inline-flex items-center justify-center gap-2 bg-primary-800 text-white px-6 py-3 rounded-lg font-bold hover:bg-primary-700 transition-colors border border-primary-600"
             >
-              Contact Opnemen
+              {t.pages.landmeting.contactUs}
             </Link>
           </div>
         </div>

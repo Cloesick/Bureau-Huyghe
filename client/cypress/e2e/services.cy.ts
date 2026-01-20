@@ -42,7 +42,7 @@ describe('Service Pages', () => {
       it('has working contact CTA buttons', () => {
         cy.get('[data-test="cta-section"]').within(() => {
           cy.get('a[href="/contact"]').should('exist');
-          cy.get('a[href="/appointments"]').should('exist');
+          cy.get('a[href="/offerte"]').should('exist');
         });
       });
 
@@ -54,7 +54,7 @@ describe('Service Pages', () => {
 
       it('shows responsive images', () => {
         cy.get('img').each($img => {
-          expect($img[0].naturalWidth).to.be.greaterThan(0);
+          expect(($img[0] as HTMLImageElement).naturalWidth).to.be.greaterThan(0);
         });
       });
     });
@@ -66,7 +66,9 @@ describe('Service Pages', () => {
     // Test navigation through service menu
     cy.get('[data-test="service-menu"]').should('exist');
     services.forEach(service => {
-      cy.get(`[data-test="nav-${service.path.split('/').pop()}"]`).click();
+      cy.get('[data-test="service-menu"]').within(() => {
+        cy.get(`[data-test="nav-${service.path.split('/').pop()}"]`).click();
+      });
       cy.url().should('include', service.path);
       cy.get('[data-test="hero-title"]').should('contain', service.title);
     });
@@ -80,15 +82,4 @@ describe('Service Pages', () => {
       .should('have.length', 3); // All other services
   });
 
-  it('preserves language selection across pages', () => {
-    cy.visit('/services/property-survey');
-    
-    // Switch to English
-    cy.contains('button', 'EN').click();
-    cy.get('[data-test="hero-title"]').should('contain', 'Land Survey');
-    
-    // Navigate to another service
-    cy.get('[data-test="nav-construction-survey"]').click();
-    cy.get('[data-test="hero-title"]').should('contain', 'Construction Survey');
-  });
 });

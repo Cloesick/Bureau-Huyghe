@@ -1,40 +1,42 @@
 import { MapPin } from 'lucide-react';
 import { useLanguage } from '../i18n/LanguageContext';
+import Header from '../components/Header';
 
 export default function AboutPage() {
-  const { } = useLanguage();
+  const { t } = useLanguage();
 
   const teamMembers = [
     {
       name: 'Jan Huyghe',
-      role: 'Zaakvoerder & Landmeter-Expert',
+      role: t.pages.about.teamRole,
       image: '/team/jan-huyghe.jpg',
-      description: 'Meer dan 20 jaar ervaring in landmeten en vastgoedexpertise.'
+      description: t.pages.about.teamDesc
     }
     // Add more team members as needed
   ];
 
   const values = [
     {
-      title: 'Expertise',
-      description: 'Jarenlange ervaring en continue bijscholing in de nieuwste technieken.'
+      title: t.pages.about.valueExpertise,
+      description: t.pages.about.valueExpertiseDesc
     },
     {
-      title: 'Nauwkeurigheid',
-      description: 'Precisie en aandacht voor detail in elk project.'
+      title: t.pages.about.valueAccuracy,
+      description: t.pages.about.valueAccuracyDesc
     },
     {
-      title: 'Betrouwbaarheid',
-      description: 'Transparante communicatie en stipte oplevering.'
+      title: t.pages.about.valueReliability,
+      description: t.pages.about.valueReliabilityDesc
     },
     {
-      title: 'Innovatie',
-      description: 'Gebruik van moderne technologie voor optimale resultaten.'
+      title: t.pages.about.valueInnovation,
+      description: t.pages.about.valueInnovationDesc
     }
   ];
 
   return (
     <div>
+      <Header />
       {/* Hero Section */}
       <section 
         data-test="about-hero"
@@ -42,10 +44,10 @@ export default function AboutPage() {
       >
         <div className="max-w-7xl mx-auto px-4">
           <h1 className="text-4xl md:text-5xl font-bold mb-6">
-            Over Bureau Huyghe
+            {t.pages.about.title}
           </h1>
           <p className="text-xl text-blue-200 max-w-2xl">
-            Bureau Huyghe is uw betrouwbare partner voor landmeten, bouwmeting en technische documentatie in West-Vlaanderen.
+            {t.pages.about.heroText}
           </p>
         </div>
       </section>
@@ -56,13 +58,13 @@ export default function AboutPage() {
         className="py-16 bg-gray-50"
       >
         <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-8">Onze Geschiedenis</h2>
+          <h2 className="text-3xl font-bold mb-8">{t.pages.about.historyTitle}</h2>
           <div className="prose prose-lg max-w-none">
             <p>
-              Bureau Huyghe werd opgericht met een duidelijke visie: het leveren van hoogwaardige landmeetkundige diensten met persoonlijke aandacht voor elke klant.
+              {t.pages.about.historyText1}
             </p>
             <p>
-              Door de jaren heen hebben we ons ontwikkeld tot een veelzijdig expertisebureau dat zowel particulieren als professionals bijstaat met advies en technische ondersteuning.
+              {t.pages.about.historyText2}
             </p>
           </div>
         </div>
@@ -74,7 +76,7 @@ export default function AboutPage() {
         className="py-16"
       >
         <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-12 text-center">Ons Team</h2>
+          <h2 className="text-3xl font-bold mb-12 text-center">{t.pages.about.teamTitle}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {teamMembers.map((member) => (
               <div 
@@ -104,7 +106,7 @@ export default function AboutPage() {
         className="py-16 bg-gray-50"
       >
         <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-12 text-center">Onze Waarden</h2>
+          <h2 className="text-3xl font-bold mb-12 text-center">{t.pages.about.valuesTitle}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {values.map((value) => (
               <div 
@@ -128,7 +130,7 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-3xl font-bold mb-6">Onze Locatie</h2>
+              <h2 className="text-3xl font-bold mb-6">{t.pages.about.locationTitle}</h2>
               <div className="flex items-start gap-4 mb-4">
                 <MapPin className="w-5 h-5 text-blue-600 mt-1" />
                 <div>
@@ -138,7 +140,7 @@ export default function AboutPage() {
                 </div>
               </div>
               <p className="text-gray-600">
-                Centraal gelegen in Brugge, gemakkelijk bereikbaar met zowel auto als openbaar vervoer.
+                {t.pages.about.locationText}
               </p>
             </div>
             <div className="aspect-w-16 aspect-h-9">

@@ -4,7 +4,7 @@ import { PrismaClient } from '@prisma/client';
 const router = Router();
 const prisma = new PrismaClient();
 
-router.get('/', async (req, res) => {
+router.get('/', async (_req, res) => {
   try {
     // Check database connection
     await prisma.$queryRaw`SELECT 1`;

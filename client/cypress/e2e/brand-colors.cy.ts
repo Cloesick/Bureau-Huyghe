@@ -21,7 +21,7 @@ describe('Brand Colors', () => {
       .should('have.class', 'hover:bg-accent-500');
 
     // Check links
-    cy.get('[data-test="nav-link"]')
+    cy.get('.nav-link')
       .should('have.class', 'text-primary-100')
       .realHover()
       .should('have.class', 'hover:text-accent-400');

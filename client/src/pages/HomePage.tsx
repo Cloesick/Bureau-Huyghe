@@ -91,7 +91,7 @@ export default function HomePage() {
               <div className="flex items-center gap-4">
                 <div className="flex items-center gap-2">
                   <Calendar className="w-5 h-5 text-accent-600" />
-                  <span className="font-semibold text-accent-900">Komende afspraken</span>
+                  <span className="font-semibold text-accent-900">{t.dashboard.upcomingAppointments}</span>
                 </div>
                 <div className="hidden md:flex items-center gap-4">
                   {appointments.map((apt) => (
@@ -103,7 +103,7 @@ export default function HomePage() {
                           day: 'numeric',
                           month: 'short',
                         })}{' '}
-                        om{' '}
+                        {' '}
                         {new Date(apt.scheduledAt).toLocaleTimeString('nl-BE', {
                           hour: '2-digit',
                           minute: '2-digit',
@@ -118,7 +118,7 @@ export default function HomePage() {
                 to="/dashboard"
                 className="text-sm text-accent-700 hover:text-accent-800 font-medium flex items-center gap-1"
               >
-                Bekijk alle
+                {t.dashboard.viewAll}
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
@@ -220,43 +220,31 @@ export default function HomePage() {
           <div className="grid md:grid-cols-2 gap-10 items-center">
             <div>
               <h2 className="text-2xl md:text-3xl font-bold text-primary-900 mb-4">
-                Persoonlijke gids doorheen facts & figures
+                {t.about.title}
               </h2>
               <p className="text-primary-700 mb-4 leading-relaxed">
-                Jouw boekhouding en fiscaliteit van A tot Z bijhouden en verzorgen, is voor ons een evidentie. 
-                Onze echte meerwaarde zit hem vooral in ons persoonlijk partnership.
+                {t.about.p1}
               </p>
               <p className="text-primary-700 mb-6 leading-relaxed">
-                Proactief werken en meedenken over nieuwe opportuniteiten is onze tweede natuur. 
-                Altijd to the point, met oog voor duurzaamheid en discretie.
+                {t.about.p2}
               </p>
               <Link 
                 to="/register"
                 className="inline-flex items-center gap-2 bg-accent-500 text-white px-5 py-2.5 rounded font-bold hover:bg-accent-600 transition-colors"
               >
-                Start vandaag
+                {t.about.cta}
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
             <div className="bg-primary-900 p-6 rounded">
-              <h3 className="text-white font-bold mb-4 text-lg">Wat we doen</h3>
+              <h3 className="text-white font-bold mb-4 text-lg">{t.about.whatWeDo}</h3>
               <ul className="space-y-3">
-                <li className="flex items-start gap-3 text-primary-200">
-                  <CheckCircle className="w-5 h-5 text-accent-400 mt-0.5 flex-shrink-0" />
-                  <span>Analytische boekhouding & jaarrekeningen</span>
-                </li>
-                <li className="flex items-start gap-3 text-primary-200">
-                  <CheckCircle className="w-5 h-5 text-accent-400 mt-0.5 flex-shrink-0" />
-                  <span>Alle fiscale aangiftes & optimalisatie</span>
-                </li>
-                <li className="flex items-start gap-3 text-primary-200">
-                  <CheckCircle className="w-5 h-5 text-accent-400 mt-0.5 flex-shrink-0" />
-                  <span>Startersadvies & kredietbegeleiding</span>
-                </li>
-                <li className="flex items-start gap-3 text-primary-200">
-                  <CheckCircle className="w-5 h-5 text-accent-400 mt-0.5 flex-shrink-0" />
-                  <span>Vermogensplanning & successie</span>
-                </li>
+                {t.about.services.map((service, index) => (
+                  <li key={index} className="flex items-start gap-3 text-primary-200">
+                    <CheckCircle className="w-5 h-5 text-accent-400 mt-0.5 flex-shrink-0" />
+                    <span>{service}</span>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
@@ -286,7 +274,7 @@ export default function HomePage() {
               <div className="flex items-center justify-center h-[700px] bg-gray-50">
                 <div className="text-center">
                   <div className="w-12 h-12 border-4 border-primary-600 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
-                  <p className="text-gray-500">Kalender laden...</p>
+                  <p className="text-gray-500">{t.pages.calendly.loading}</p>
                 </div>
               </div>
             )}
@@ -321,39 +309,37 @@ export default function HomePage() {
                 <img src="/logo Bureau Huyghe.png" alt="Bureau Huyghe - Logo" className="h-11 w-auto" />
               </a>
               <p className="text-primary-300 leading-relaxed max-w-md">
-                Professioneel advies en persoonlijke begeleiding. Starter of gevestigde onderneming? 
-                Bureau Huyghe staat garant voor nauwkeurige metingen en professionele documentatie.
+                {t.footer.description}
               </p>
             </div>
             <div>
-              <h4 className="text-white font-bold mb-4 text-lg">Contact</h4>
+              <h4 className="text-white font-bold mb-4 text-lg">{t.footer.contact}</h4>
               <div className="text-primary-300 space-y-2">
                 <p>Koningin Astridlaan 134 bus 1</p>
                 <p>8200 Brugge</p>
-                <p className="pt-2">T. 050/45 70 31</p>
+                <p className="pt-2">{t.phone}</p>
                 <a href="mailto:info@bureau-huyghe.be" className="block hover:text-accent-400 transition-colors">info@bureau-huyghe.be</a>
               </div>
             </div>
             <div>
-              <h4 className="text-white font-bold mb-4 text-lg">Navigatie</h4>
+              <h4 className="text-white font-bold mb-4 text-lg">{t.footer.navigation}</h4>
               <div className="space-y-2">
-                <a href="#" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="block text-primary-300 hover:text-accent-400 transition-colors cursor-pointer">Home</a>
-                <Link to="/boekhouding" className="block text-primary-300 hover:text-accent-400 transition-colors cursor-pointer">Boekhouding</Link>
-                <Link to="/fiscaliteit" className="block text-primary-300 hover:text-accent-400 transition-colors cursor-pointer">Fiscaliteit</Link>
-                <Link to="/begeleiding" className="block text-primary-300 hover:text-accent-400 transition-colors cursor-pointer">Begeleiding</Link>
-                <Link to="/nieuws" className="block text-primary-300 hover:text-accent-400 transition-colors cursor-pointer">Nieuws</Link>
-                <Link to="/vacatures" className="block text-primary-300 hover:text-accent-400 transition-colors cursor-pointer">Vacatures</Link>
-                <Link to="/links" className="block text-primary-300 hover:text-accent-400 transition-colors cursor-pointer">Links</Link>
-                <Link to="/login" className="block text-primary-300 hover:text-accent-400 transition-colors cursor-pointer">Login</Link>
+                <a href="#" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="block text-primary-300 hover:text-accent-400 transition-colors cursor-pointer">{t.footer.home}</a>
+                <Link to="/landmeting" className="block text-primary-300 hover:text-accent-400 transition-colors cursor-pointer">{t.nav.landmeting}</Link>
+                <Link to="/bouwmeting" className="block text-primary-300 hover:text-accent-400 transition-colors cursor-pointer">{t.nav.bouwmeting}</Link>
+                <Link to="/technische-documentatie" className="block text-primary-300 hover:text-accent-400 transition-colors cursor-pointer">{t.nav.technischeDocumentatie}</Link>
+                <Link to="/nieuws" className="block text-primary-300 hover:text-accent-400 transition-colors cursor-pointer">{t.footer.news}</Link>
+                <Link to="/contact" className="block text-primary-300 hover:text-accent-400 transition-colors cursor-pointer">{t.nav.contact}</Link>
+                <Link to="/login" className="block text-primary-300 hover:text-accent-400 transition-colors cursor-pointer">{t.login}</Link>
               </div>
             </div>
           </div>
           <div className="border-t border-primary-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-primary-400">
-            <p>&copy; 2025 Bureau Huyghe. Alle rechten voorbehouden.</p>
+            <p>&copy; 2025 Bureau Huyghe. {t.footer.rights}</p>
             <div className="flex gap-4">
-              <span>Cookies</span>
-              <span>Privacyverklaring</span>
-              <span>GDPR-compliant</span>
+              <span>{t.footer.cookies}</span>
+              <span>{t.footer.privacy}</span>
+              <span>{t.footer.gdpr}</span>
             </div>
           </div>
         </div>

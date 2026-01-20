@@ -27,7 +27,7 @@ export default function LoginPage() {
       
       if (response.success && response.data) {
         login(response.data.user, response.data.token);
-        navigate('/dashboard');
+        navigate('/portal');
       } else {
         // Map backend errors to translated messages
         const errorMsg = response.error?.toLowerCase() || '';
@@ -80,6 +80,7 @@ export default function LoginPage() {
                 className="input"
                 placeholder="uw@email.be"
                 required
+                data-test="email-input"
               />
             </div>
 
@@ -97,6 +98,7 @@ export default function LoginPage() {
                   className="input pr-10"
                   placeholder="••••••••"
                   required
+                  data-test="password-input"
                 />
                 <button
                   type="button"
@@ -112,6 +114,7 @@ export default function LoginPage() {
               type="submit"
               disabled={loading}
               className="btn-primary w-full py-3"
+              data-test="login-button"
             >
               {loading ? t.auth.loginButton + '...' : t.auth.loginButton}
             </button>

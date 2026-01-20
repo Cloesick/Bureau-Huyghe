@@ -4,6 +4,10 @@ import 'cypress-file-upload';
 import 'cypress-axe';
 import 'cypress-real-events';
 
+Cypress.on('window:before:load', (win) => {
+  win.localStorage.setItem('language', 'nl');
+});
+
 declare global {
   namespace Cypress {
     interface Chainable {

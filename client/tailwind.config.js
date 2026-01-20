@@ -7,32 +7,32 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Primary - Forest Green
+        // Primary - Teal
         primary: {
-          50: '#f2f7f4',
-          100: '#e6efe9',
-          200: '#ccdfd3',
-          300: '#b3cfbd',
-          400: '#99bfa7',
-          500: '#2d5c3c',  // Main brand green
-          600: '#264d33',
-          700: '#1f3e29',
-          800: '#182f1f',
-          900: '#112015',
-          950: '#0a100c',
+          50: '#f3f6f7',
+          100: '#e7edef',
+          200: '#cfdbdf',
+          300: '#b6c8cf',
+          400: '#89a4ad',
+          500: '#2f4e5d',  // Main brand teal
+          600: '#294552',
+          700: '#223a44',
+          800: '#1b2f36',
+          900: '#142329',
+          950: '#0d171b',
         },
-        // Accent - Metallic Gold
+        // Accent - Bright Yellow
         accent: {
-          50: '#fdfaf4',
-          100: '#fbf5e9',
-          200: '#f7ebd3',
-          300: '#f3e1bd',
-          400: '#c4a661',  // Main brand gold
-          500: '#b39558',
-          600: '#8c744a',
-          700: '#665438',
-          800: '#4d3f2a',
-          900: '#332a1c',
+          50: '#fff9e6',
+          100: '#fff2cc',
+          200: '#ffe699',
+          300: '#ffd966',
+          400: '#ffcb00',  // Main brand yellow
+          500: '#e6b700',
+          600: '#cca300',
+          700: '#997a00',
+          800: '#665100',
+          900: '#332900',
         },
         // Success green for data viz
         success: {

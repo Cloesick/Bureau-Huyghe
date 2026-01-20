@@ -3,6 +3,7 @@ import path from 'path';
 import { promises as fs } from 'fs';
 import handlebars from 'handlebars';
 import crypto from 'crypto';
+import type { Attachment } from 'nodemailer/lib/mailer';
 
 interface EmailOptions {
   to: string;
@@ -12,6 +13,7 @@ interface EmailOptions {
   data: Record<string, any>;
   scheduledFor?: Date;
   trackingId?: string;
+  attachments?: Attachment[];
 }
 
 interface EmailTracking {
@@ -99,13 +101,17 @@ export const handleBounce = async (trackingId: string, reason: string): Promise<
 };
 
 export const transporter = nodemailer.createTransport({
-  host: process.env.SMTP_HOST,
-  port: Number(process.env.SMTP_PORT),
-  secure: true,
-  auth: {
-    user: process.env.SMTP_USER,
-    pass: process.env.SMTP_PASS,
-  },
+  ...(process.env.NODE_ENV === 'test' || process.env.EMAIL_TRANSPORT === 'json'
+    ? ({ jsonTransport: true } as any)
+    : ({
+        host: process.env.SMTP_HOST,
+        port: Number(process.env.SMTP_PORT),
+        secure: true,
+        auth: {
+          user: process.env.SMTP_USER,
+          pass: process.env.SMTP_PASS,
+        },
+      } as any)),
 });
 
 export const sendEmail = async (options: EmailOptions) => {
@@ -152,6 +158,7 @@ export const sendEmail = async (options: EmailOptions) => {
     cc: options.cc,
     subject: options.subject,
     html,
+    attachments: options.attachments,
   });
 
   return trackingId;

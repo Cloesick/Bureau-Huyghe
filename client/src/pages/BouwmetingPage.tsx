@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Building2, Ruler, Box, FileCheck, Clock, Calculator, Scan, ArrowRight, ChevronLeft, ChevronRight, Check } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Layout from '../components/Layout';
+import { useLanguage } from '../i18n/LanguageContext';
 
 // Before/After project examples for construction
 const projectExamples = [
@@ -84,80 +85,66 @@ const pricingIndicators = [
 ];
 
 export default function BouwmetingPage() {
+  const { t } = useLanguage();
   const [activeExample, setActiveExample] = useState(0);
   const [showAfter, setShowAfter] = useState(false);
 
   const services = [
     {
       icon: Building2,
-      title: 'Bouwplaats Uitzetting',
-      description: 'Nauwkeurige uitzetting van bouwwerken volgens plan, inclusief hoogtepeilen en referentiepunten.',
-      features: [
-        'Digitale uitzetting',
-        'Hoogtepeilen bepaling',
-        'Referentiepunten markering',
-        'As-built controle'
-      ]
+      title: t.pages.bouwmeting.uitzetting,
+      description: t.pages.bouwmeting.uitzettingDesc,
+      features: t.pages.bouwmeting.uitzettingFeatures
     },
     {
       icon: Scan,
-      title: '3D Scanning',
-      description: 'Gedetailleerde 3D-scans van gebouwen en constructies voor accurate digitale modellen.',
-      features: [
-        'Point cloud data',
-        'BIM-ready modellen',
-        'Volumeberekeningen',
-        'Deformatiemetingen'
-      ]
+      title: t.pages.bouwmeting.scanning,
+      description: t.pages.bouwmeting.scanningDesc,
+      features: t.pages.bouwmeting.scanningFeatures
     },
     {
       icon: Box,
-      title: 'Maatvoering',
-      description: 'Professionele maatvoering voor nieuwbouw en renovatieprojecten met millimeterprecisie.',
-      features: [
-        'Digitale meetplannen',
-        'Controle metingen',
-        'Detailmaatvoering',
-        'Kwaliteitscontrole'
-      ]
+      title: t.pages.bouwmeting.maatvoering,
+      description: t.pages.bouwmeting.maatvoeringDesc,
+      features: t.pages.bouwmeting.maatvoeringFeatures
     }
   ];
 
   const process = [
     {
-      title: 'Projectanalyse',
-      description: 'Bestudering van bouwplannen en technische vereisten.'
+      title: t.pages.bouwmeting.step1Title,
+      description: t.pages.bouwmeting.step1Desc
     },
     {
-      title: 'Planning & Voorbereiding',
-      description: 'Opstellen van meetplan en planning van werkzaamheden.'
+      title: t.pages.bouwmeting.step2Title,
+      description: t.pages.bouwmeting.step2Desc
     },
     {
-      title: 'Uitvoering',
-      description: 'Nauwkeurige metingen en uitzettingen op de bouwplaats.'
+      title: t.pages.bouwmeting.step3Title,
+      description: t.pages.bouwmeting.step3Desc
     },
     {
-      title: 'Kwaliteitscontrole',
-      description: 'Verificatie en documentatie van alle metingen.'
+      title: t.pages.bouwmeting.step4Title,
+      description: t.pages.bouwmeting.step4Desc
     }
   ];
 
   const faqs = [
     {
-      question: 'Welke nauwkeurigheid kan ik verwachten?',
-      answer: 'We werken met state-of-the-art apparatuur die een nauwkeurigheid tot op de millimeter garandeert.'
+      question: t.pages.bouwmeting.faq1Q,
+      answer: t.pages.bouwmeting.faq1A
     },
     {
-      question: 'Hoe lang duurt een 3D-scan?',
-      answer: 'Een gemiddelde 3D-scan duurt 2-4 uur, afhankelijk van de grootte en complexiteit van het project.'
+      question: t.pages.bouwmeting.faq2Q,
+      answer: t.pages.bouwmeting.faq2A
     },
     {
-      question: 'Zijn de metingen BIM-compatibel?',
-      answer: 'Ja, we leveren data in alle gangbare BIM-formaten voor naadloze integratie in uw workflow.'
+      question: t.pages.bouwmeting.faq3Q,
+      answer: t.pages.bouwmeting.faq3A
     },
     {
-      question: 'Kan er tijdens de bouw worden gemeten?',
-      answer: 'Ja, we bieden continue monitoring en controle tijdens het gehele bouwproces.'
+      question: t.pages.bouwmeting.faq4Q,
+      answer: t.pages.bouwmeting.faq4A
     }
   ];
 
@@ -168,24 +155,23 @@ export default function BouwmetingPage() {
         <div className="max-w-7xl mx-auto px-4">
           <div className="max-w-3xl">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              Professionele Bouwmeting
+              {t.pages.bouwmeting.title}
             </h1>
             <p className="text-xl text-primary-100 mb-8">
-              Nauwkeurige metingen en uitzettingen voor uw bouwproject.
-              Met moderne 3D-scanning technologie en jarenlange expertise in de bouwsector.
+              {t.pages.bouwmeting.heroText}
             </p>
             <div className="flex flex-wrap gap-4">
               <Link
                 to="/offerte"
                 className="bg-accent-400 text-white px-6 py-3 rounded font-bold hover:bg-accent-500 transition-colors"
               >
-                Offerte Aanvragen
+                {t.requestQuote}
               </Link>
               <a
                 href="#diensten"
                 className="bg-white text-primary-500 px-6 py-3 rounded font-bold hover:bg-primary-50 transition-colors"
               >
-                Onze Diensten
+                {t.pages.landmeting.ourServices}
               </a>
             </div>
           </div>
@@ -196,7 +182,7 @@ export default function BouwmetingPage() {
       <section id="diensten" className="py-20">
         <div className="max-w-7xl mx-auto px-4">
           <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">
-            Onze Bouwmeetkundige Diensten
+            {t.pages.bouwmeting.servicesTitle}
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
             {services.map((service) => {
@@ -228,10 +214,10 @@ export default function BouwmetingPage() {
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Projectvoorbeelden
+              {t.pages.landmeting.projectExamples}
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Bekijk hoe wij bouwprojecten ondersteunen met nauwkeurige metingen
+              {t.pages.bouwmeting.projectExamplesText}
             </p>
           </div>
 
@@ -266,11 +252,11 @@ export default function BouwmetingPage() {
                     onClick={() => setShowAfter(!showAfter)}
                     className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-white/90 backdrop-blur-sm px-6 py-3 rounded-full shadow-lg flex items-center gap-3 hover:bg-white transition-colors"
                   >
-                    <span className={`font-medium ${!showAfter ? 'text-primary-600' : 'text-gray-400'}`}>Voor</span>
+                    <span className={`font-medium ${!showAfter ? 'text-primary-600' : 'text-gray-400'}`}>{t.pages.landmeting.before}</span>
                     <div className="w-12 h-6 bg-gray-200 rounded-full relative">
                       <div className={`absolute top-1 w-4 h-4 bg-primary-500 rounded-full transition-all ${showAfter ? 'left-7' : 'left-1'}`} />
                     </div>
-                    <span className={`font-medium ${showAfter ? 'text-primary-600' : 'text-gray-400'}`}>Na</span>
+                    <span className={`font-medium ${showAfter ? 'text-primary-600' : 'text-gray-400'}`}>{t.pages.landmeting.after}</span>
                   </button>
                   <div className={`absolute top-4 left-4 px-3 py-1 rounded-full text-sm font-bold ${showAfter ? 'bg-green-500 text-white' : 'bg-orange-500 text-white'}`}>
                     {showAfter ? 'NA' : 'VOOR'}
@@ -330,10 +316,10 @@ export default function BouwmetingPage() {
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Transparante Prijzen
+              {t.pages.landmeting.transparentPricing}
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Indicatieve startprijzen voor onze bouwmeetdiensten
+              {t.pages.bouwmeting.transparentPricingText}
             </p>
           </div>
 
@@ -343,15 +329,15 @@ export default function BouwmetingPage() {
                 <div className="bg-primary-500 text-white p-6">
                   <h3 className="text-xl font-bold mb-2">{pricing.service}</h3>
                   <div className="flex items-baseline gap-1">
-                    <span className="text-sm">Vanaf</span>
+                    <span className="text-sm">{t.pages.landmeting.from}</span>
                     <span className="text-4xl font-bold">€{pricing.startPrice}</span>
-                    <span className="text-primary-200">excl. BTW</span>
+                    <span className="text-primary-200">{t.pages.landmeting.exclVat}</span>
                   </div>
                 </div>
                 <div className="p-6">
                   <p className="text-gray-600 mb-4">{pricing.description}</p>
                   <div className="border-t border-gray-100 pt-4">
-                    <p className="text-sm font-medium text-gray-500 mb-2">Prijsbepalende factoren:</p>
+                    <p className="text-sm font-medium text-gray-500 mb-2">{t.pages.landmeting.pricingFactors}</p>
                     <ul className="space-y-2">
                       {pricing.factors.map((factor) => (
                         <li key={factor} className="flex items-center gap-2 text-sm text-gray-600">
@@ -367,7 +353,7 @@ export default function BouwmetingPage() {
                     to="/offerte#calculator"
                     className="w-full flex items-center justify-center gap-2 bg-accent-500 text-white py-3 rounded-lg font-medium hover:bg-accent-600 transition-colors"
                   >
-                    Bereken Prijs
+                    {t.pages.landmeting.calculatePrice}
                     <ArrowRight className="w-4 h-4" />
                   </Link>
                 </div>
@@ -377,7 +363,7 @@ export default function BouwmetingPage() {
 
           <div className="mt-8 text-center">
             <p className="text-gray-500 text-sm">
-              * Prijzen zijn indicatief. De exacte prijs wordt bepaald na bespreking van uw project.
+              {t.pages.bouwmeting.pricingDisclaimer}
             </p>
           </div>
         </div>
@@ -387,7 +373,7 @@ export default function BouwmetingPage() {
       <section className="bg-gray-50 py-20">
         <div className="max-w-7xl mx-auto px-4">
           <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">
-            Ons Werkproces
+            {t.pages.landmeting.workProcess}
           </h2>
           <div className="grid md:grid-cols-4 gap-8">
             {process.map((step, index) => (
@@ -412,49 +398,35 @@ export default function BouwmetingPage() {
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4">
           <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">
-            Onze Apparatuur
+            {t.pages.bouwmeting.equipmentTitle}
           </h2>
           <div className="grid md:grid-cols-2 gap-8">
             <div className="bg-white rounded-xl shadow-lg p-6">
-              <h3 className="text-xl font-bold text-gray-900 mb-4">3D Laser Scanner</h3>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">{t.pages.bouwmeting.laserScanner}</h3>
               <p className="text-gray-600 mb-4">
-                Onze geavanceerde 3D laser scanner maakt het mogelijk om complexe structuren
-                snel en nauwkeurig in kaart te brengen met millimeterprecisie.
+                {t.pages.bouwmeting.laserScannerDesc}
               </p>
               <ul className="space-y-2">
-                <li className="flex items-center text-gray-700">
-                  <FileCheck className="w-5 h-5 text-primary-500 mr-2" />
-                  Tot 2mm nauwkeurigheid
-                </li>
-                <li className="flex items-center text-gray-700">
-                  <FileCheck className="w-5 h-5 text-primary-500 mr-2" />
-                  1 miljoen punten per seconde
-                </li>
-                <li className="flex items-center text-gray-700">
-                  <FileCheck className="w-5 h-5 text-primary-500 mr-2" />
-                  360° dekking
-                </li>
+                {t.pages.bouwmeting.laserScannerFeatures.map((feature, index) => (
+                  <li key={index} className="flex items-center text-gray-700">
+                    <FileCheck className="w-5 h-5 text-primary-500 mr-2" />
+                    {feature}
+                  </li>
+                ))}
               </ul>
             </div>
             <div className="bg-white rounded-xl shadow-lg p-6">
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Robotic Total Station</h3>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">{t.pages.bouwmeting.totalStation}</h3>
               <p className="text-gray-600 mb-4">
-                Voor uiterst precieze metingen en uitzettingen gebruiken we een
-                robotische total station met automatische doelherkenning.
+                {t.pages.bouwmeting.totalStationDesc}
               </p>
               <ul className="space-y-2">
-                <li className="flex items-center text-gray-700">
-                  <FileCheck className="w-5 h-5 text-primary-500 mr-2" />
-                  0.5" hoeknauwkeurigheid
-                </li>
-                <li className="flex items-center text-gray-700">
-                  <FileCheck className="w-5 h-5 text-primary-500 mr-2" />
-                  Automatische prismavolging
-                </li>
-                <li className="flex items-center text-gray-700">
-                  <FileCheck className="w-5 h-5 text-primary-500 mr-2" />
-                  Geïntegreerde camera
-                </li>
+                {t.pages.bouwmeting.totalStationFeatures.map((feature, index) => (
+                  <li key={index} className="flex items-center text-gray-700">
+                    <FileCheck className="w-5 h-5 text-primary-500 mr-2" />
+                    {feature}
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
@@ -465,7 +437,7 @@ export default function BouwmetingPage() {
       <section className="bg-gray-50 py-20">
         <div className="max-w-7xl mx-auto px-4">
           <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">
-            Veelgestelde Vragen
+            {t.pages.landmeting.faqTitle}
           </h2>
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {faqs.map((faq) => (
@@ -482,24 +454,23 @@ export default function BouwmetingPage() {
       <section className="bg-primary-500 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-6">
-            Klaar om uw bouwproject te starten?
+            {t.pages.bouwmeting.ctaTitle}
           </h2>
           <p className="text-xl text-primary-100 mb-8 max-w-2xl mx-auto">
-            Neem contact op voor een vrijblijvende offerte of stel uw vragen.
-            We reageren binnen 24 uur.
+            {t.pages.landmeting.ctaText}
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
             <Link
               to="/offerte"
               className="bg-accent-400 text-white px-8 py-4 rounded-lg font-bold hover:bg-accent-500 transition-colors"
             >
-              Offerte Aanvragen
+              {t.requestQuote}
             </Link>
             <Link
               to="/contact"
               className="bg-white text-primary-500 px-8 py-4 rounded-lg font-bold hover:bg-primary-50 transition-colors"
             >
-              Contact Opnemen
+              {t.pages.landmeting.contactUs}
             </Link>
           </div>
         </div>
@@ -511,18 +482,18 @@ export default function BouwmetingPage() {
           <div className="grid md:grid-cols-3 gap-8 text-center">
             <div>
               <Clock className="w-12 h-12 text-primary-500 mx-auto mb-4" />
-              <h3 className="text-xl font-bold text-gray-900 mb-2">Snelle Service</h3>
-              <p className="text-gray-600">Binnen 24 uur reactie op uw aanvraag</p>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">{t.pages.bouwmeting.fastService}</h3>
+              <p className="text-gray-600">{t.pages.bouwmeting.fastServiceText}</p>
             </div>
             <div>
               <Ruler className="w-12 h-12 text-primary-500 mx-auto mb-4" />
-              <h3 className="text-xl font-bold text-gray-900 mb-2">Millimeterprecisie</h3>
-              <p className="text-gray-600">State-of-the-art meetapparatuur</p>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">{t.pages.bouwmeting.millimeterPrecision}</h3>
+              <p className="text-gray-600">{t.pages.bouwmeting.millimeterPrecisionText}</p>
             </div>
             <div>
               <Calculator className="w-12 h-12 text-primary-500 mx-auto mb-4" />
-              <h3 className="text-xl font-bold text-gray-900 mb-2">Heldere Prijzen</h3>
-              <p className="text-gray-600">Transparante offertes zonder verrassingen</p>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">{t.pages.bouwmeting.clearPricing}</h3>
+              <p className="text-gray-600">{t.pages.bouwmeting.clearPricingText}</p>
             </div>
           </div>
         </div>

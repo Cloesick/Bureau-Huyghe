@@ -167,7 +167,7 @@ export default function ContactForm() {
           Wij hebben uw bericht goed ontvangen.
         </p>
         <p className="text-gray-500 text-sm mb-8">
-          Een van onze experts neemt binnen 24 uur contact met u op.
+          We nemen contact met u op.
         </p>
         <button
           onClick={() => setStatus('idle')}
@@ -280,20 +280,32 @@ export default function ContactForm() {
           <Briefcase className="w-4 h-4 inline mr-1 text-gray-400" />
           Waar kunnen wij u mee helpen? *
         </label>
-        <FormField
-          label="Waar kunnen wij u mee helpen? *"
-          name="service"
-          type="select"
-          value={formData.service}
-          onChange={handleFieldChange}
-          onBlur={() => handleBlur('service')}
-          error={errors.service}
-          placeholder="-- Selecteer een dienst --"
-          options={Object.values(serviceCategories).map(({ label }) => label)}
-          icon={<Briefcase className="w-4 h-4" />}
-          required
-          data-test="service-select"
-        />
+        <div className="space-y-1">
+          <select
+            id="service"
+            name="service"
+            value={formData.service}
+            onChange={(e) => handleFieldChange('service', e.target.value)}
+            onBlur={() => handleBlur('service')}
+            required
+            className={`w-full px-4 py-3 border-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all bg-white ${
+              errors.service ? 'border-red-300' : 'border-gray-200'
+            }`}
+            data-test="service-select"
+          >
+            <option value="">-- Selecteer een dienst --</option>
+            {Object.entries(serviceCategories).map(([key, { label }]) => (
+              <option key={key} value={key}>
+                {label}
+              </option>
+            ))}
+          </select>
+          {errors.service && (
+            <p className="text-sm text-red-600" data-test="service-error">
+              {errors.service}
+            </p>
+          )}
+        </div>
         {formData.service && serviceCategories[formData.service as keyof typeof serviceCategories] && (
           <p className="mt-2 text-sm text-primary-500 bg-primary-50 px-3 py-2 rounded-lg">
             ℹ️ {serviceCategories[formData.service as keyof typeof serviceCategories].description}
@@ -412,8 +424,7 @@ export default function ContactForm() {
       {/* Privacy Notice */}
       <div className="bg-gray-50 p-4 rounded-lg text-sm text-gray-600 border border-gray-100">
         <p>
-          🔒 Uw gegevens worden vertrouwelijk behandeld conform de GDPR-wetgeving. 
-          Wij gebruiken uw informatie enkel om uw aanvraag te behandelen.
+          🔒 Uw gegevens worden vertrouwelijk behandeld. Wij gebruiken uw informatie enkel om uw aanvraag te behandelen.
         </p>
       </div>
 

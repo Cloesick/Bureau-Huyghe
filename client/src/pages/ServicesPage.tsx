@@ -1,45 +1,51 @@
 import { Link } from 'react-router-dom';
 import { MapPin, Building2, FileText, Scale } from 'lucide-react';
+import { useLanguage } from '../i18n/LanguageContext';
+import Header from '../components/Header';
+
 export default function ServicesPage() {
+  const { t } = useLanguage();
 
   const services = [
     {
       id: 'property',
-      title: 'Landmeting & Afpaling',
+      title: t.pages.services.landmeting,
       icon: MapPin,
       path: '/services/property-survey',
-      description: 'Professionele landmeting en afpaling voor uw eigendom'
+      description: t.pages.services.landmetingDesc
     },
     {
       id: 'construction',
-      title: 'Bouwmetingen',
+      title: t.pages.services.bouwmeting,
       icon: Building2,
       path: '/services/construction-survey',
-      description: 'Nauwkeurige bouwmetingen voor uw projecten'
+      description: t.pages.services.bouwmetingDesc
     },
     {
       id: 'technical',
-      title: 'Technische Documentatie',
+      title: t.pages.services.technisch,
       icon: FileText,
       path: '/services/technical-documentation',
-      description: 'Gedetailleerde technische documentatie en plannen'
+      description: t.pages.services.technischDesc
     },
     {
       id: 'legal',
-      title: 'Juridische Diensten',
+      title: t.pages.services.juridisch,
       icon: Scale,
       path: '/services/legal-services',
-      description: 'Juridische ondersteuning bij vastgoedzaken'
+      description: t.pages.services.juridischDesc
     }
   ];
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-12">
+    <div>
+      <Header />
+      <div className="max-w-7xl mx-auto px-4 py-12">
       <h1 
         data-test="services-title"
         className="text-3xl font-bold text-center mb-12"
       >
-        Onze Diensten
+        {t.pages.services.title}
       </h1>
 
       <div 
@@ -65,7 +71,7 @@ export default function ServicesPage() {
 
             <div className="mt-4 pt-4 border-t border-gray-100">
               <span className="text-primary-600 group-hover:text-primary-700 font-medium">
-                Meer informatie →
+                {t.pages.services.moreInfo} →
               </span>
             </div>
           </Link>
@@ -80,8 +86,9 @@ export default function ServicesPage() {
           to="/contact"
           className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-accent-400 hover:bg-accent-500 transition-colors"
         >
-          Offerte Aanvragen
+          {t.requestQuote}
         </Link>
+      </div>
       </div>
     </div>
   );

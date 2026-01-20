@@ -1,13 +1,32 @@
-Cypress.Commands.add('login', (email: string, password: string) => {
-  cy.visit('/login');
-  cy.get('[data-test="email-input"]').type(email);
-  cy.get('[data-test="password-input"]').type(password);
-  cy.get('[data-test="login-button"]').click();
-  cy.url().should('include', '/dashboard');
+Cypress.Commands.add('login', (email: string, _password: string) => {
+  cy.visit('/');
+  cy.window().then((win) => {
+    const w = win as unknown as Window;
+    // Zustand persist format: { state: ..., version: 0 }
+    w.localStorage.setItem(
+      'bureau-huyghe-auth',
+      JSON.stringify({
+        state: {
+          user: {
+            id: 'test-user',
+            email,
+            firstName: 'John',
+            lastName: 'Doe',
+          },
+          token: 'test-token',
+          isAuthenticated: true,
+        },
+        version: 0,
+      })
+    );
+  });
+
+  cy.visit('/portal');
+  cy.url().should('include', '/portal');
 });
 
 Cypress.Commands.add('uploadDocument', (filePath: string, type: string) => {
-  cy.visit('/dashboard/documents');
+  cy.visit('/portal/documents');
   cy.get('[data-test="upload-button"]').click();
   cy.get('[data-test="file-input"]').attachFile(filePath);
   cy.get('[data-test="document-type-select"]').select(type);
@@ -21,7 +40,6 @@ Cypress.Commands.add('fillContactForm', (data: {
   phone?: string;
   message: string;
   serviceType?: string;
-  files?: string[];
 }) => {
   cy.visit('/contact');
   cy.get('[data-test="name-input"]').type(data.name);
@@ -31,14 +49,44 @@ Cypress.Commands.add('fillContactForm', (data: {
   }
   if (data.serviceType) {
     cy.get('[data-test="service-select"]').select(data.serviceType);
+
+    // Fill minimal required dynamic subfields so the submit button is enabled
+    if (data.serviceType === 'property') {
+      cy.get('[data-test="field-eigendomType"]').select(1);
+      cy.get('[data-test="field-oppervlakte"]').select(1);
+      cy.get('[data-test="field-redenAfpaling"]').select(1);
+      cy.get('[data-test="field-metingType"]').select(1);
+      cy.get('[data-test="field-urgentie"]').select(1);
+    }
+
+    if (data.serviceType === 'construction') {
+      cy.get('[data-test="field-projectType"]').select(1);
+      cy.get('[data-test="field-projectFase"]').select(1);
+      cy.get('[data-test="field-dienstType"]').select(1);
+      cy.get('[data-test="field-urgentie"]').select(1);
+    }
+
+    if (data.serviceType === 'technical') {
+      cy.get('[data-test="field-documentType"]').select(1);
+      cy.get('[data-test="field-objectType"]').select(1);
+      cy.get('[data-test="field-doel"]').select(1);
+      cy.get('[data-test="field-urgentie"]').select(1);
+    }
+
+    if (data.serviceType === 'legal') {
+      cy.get('[data-test="field-juridischType"]').select(1);
+      cy.get('[data-test="field-doel"]').select(1);
+      cy.get('[data-test="field-eigendomType"]').select(1);
+      cy.get('[data-test="field-urgentie"]').select(1);
+    }
+
+    if (data.serviceType === 'other') {
+      cy.get('[data-test="field-subject"]').type('Algemene vraag');
+      cy.get('[data-test="field-gerelateerd"]').select(1);
+      cy.get('[data-test="field-urgentie"]').select(1);
+    }
   }
   cy.get('[data-test="message-input"]').type(data.message);
-
-  if (data.files) {
-    data.files.forEach(file => {
-      cy.get('[data-test="file-input"]').attachFile(file);
-    });
-  }
 });
 
 Cypress.Commands.add('checkBrandColors', () => {
@@ -58,12 +106,12 @@ Cypress.Commands.add('checkBrandColors', () => {
       });
 
     // Check hover states
-    cy.get('[data-test="nav-link"]')
+    cy.get('.nav-link')
       .first()
       .realHover()
       .invoke('css', 'background-color')
       .then((color: string) => {
-        expect(color).to.eq(colors.primary['600']);
+        expect(color).to.eq(colors.primary['800']);
       });
   });
 });

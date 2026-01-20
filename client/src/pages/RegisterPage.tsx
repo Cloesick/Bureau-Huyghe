@@ -63,7 +63,7 @@ export default function RegisterPage() {
       
       if (response.success && response.data) {
         login(response.data.user, response.data.token);
-        navigate('/complete-profile');
+        navigate('/portal');
       } else {
         // Map backend errors to translated messages
         const errorMsg = response.error?.toLowerCase() || '';

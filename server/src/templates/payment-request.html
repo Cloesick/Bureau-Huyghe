@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Betalingsverzoek - Bureau Huyghe</title>
+  </head>
+  <body style="font-family: Arial, sans-serif; line-height: 1.5; color: #111;">
+    <h2>Betalingsverzoek</h2>
+
+    <p>Beste {{recipientName}},</p>
+
+    <p>
+      Hierbij ontvangt u een betalingsverzoek voor het bedrag van
+      <strong>€ {{amount}}</strong>.
+    </p>
+
+    <p>
+      Scan onderstaande QR-code met uw banking app om de overschrijving automatisch in te vullen.
+    </p>
+
+    <div style="margin: 16px 0;">
+      <img src="cid:{{qrCid}}" alt="Betalings-QR" width="240" height="240" style="border: 1px solid #eee; padding: 8px;" />
+    </div>
+
+    <h3>Details</h3>
+    <ul>
+      <li><strong>Begunstigde:</strong> {{beneficiaryName}}</li>
+      <li><strong>IBAN:</strong> {{iban}}</li>
+      <li><strong>Mededeling (gestructureerd):</strong> {{reference}}</li>
+    </ul>
+
+    {{#if message}}
+      <p><strong>Opmerking:</strong> {{message}}</p>
+    {{/if}}
+
+    <p>Met vriendelijke groeten,<br />Bureau Huyghe</p>
+  </body>
+</html>

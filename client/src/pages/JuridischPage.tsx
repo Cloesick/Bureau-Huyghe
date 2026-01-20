@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Scale, FileCheck, FileSearch, FileWarning, ArrowRight, ChevronLeft, ChevronRight, Check } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Layout from '../components/Layout';
+import { useLanguage } from '../i18n/LanguageContext';
 
 // Case studies for legal services
 const caseStudies = [
@@ -76,79 +77,60 @@ interface Service {
   title: string;
   description: string;
   icon: typeof Scale | typeof FileCheck | typeof FileSearch | typeof FileWarning;
-  features: string[];
+  features: readonly string[];
 }
 
 export default function JuridischPage() {
+  const { t } = useLanguage();
   const [activeCase, setActiveCase] = useState(0);
 
   const services: Service[] = [
     {
       id: '1',
-      title: 'Plaatsbeschrijvingen',
-      description: 'Gedetailleerde en juridisch bindende documenten die de staat van een gebouw of terrein vastleggen.',
+      title: t.pages.juridisch.plaatsbeschrijving,
+      description: t.pages.juridisch.plaatsbeschrijvingDesc,
       icon: FileCheck,
-      features: [
-        'Voor en na werken',
-        'Bij verhuur of verkoop',
-        'Voor bouwprojecten',
-        'Digitale documentatie'
-      ]
+      features: t.pages.juridisch.plaatsbeschrijvingFeatures
     },
     {
       id: '2',
-      title: 'Expertises & Advies',
-      description: 'Professioneel advies en expertise bij juridische geschillen rond eigendomsgrenzen en bouwconflicten.',
+      title: t.pages.juridisch.expertise,
+      description: t.pages.juridisch.expertiseDesc,
       icon: Scale,
-      features: [
-        'Grensgeschillen',
-        'Bouwconflicten',
-        'Erfdienstbaarheden',
-        'Expert-getuige in rechtbank'
-      ]
+      features: t.pages.juridisch.expertiseFeatures
     },
     {
       id: '3',
-      title: 'Eigendomsonderzoek',
-      description: 'Grondig onderzoek naar eigendomssituaties en erfdienstbaarheden voor juridische zekerheid.',
+      title: t.pages.juridisch.eigendomsonderzoek,
+      description: t.pages.juridisch.eigendomsonderzoekDesc,
       icon: FileSearch,
-      features: [
-        'Kadastrale opzoekingen',
-        'Historisch onderzoek',
-        'Erfdienstbaarheden analyse',
-        'Eigendomscertificaten'
-      ]
+      features: t.pages.juridisch.eigendomsonderzoekFeatures
     },
     {
       id: '4',
-      title: 'Juridische Bijstand',
-      description: 'Ondersteuning bij juridische procedures en bemiddeling bij conflicten rond eigendom en grenzen.',
+      title: t.pages.juridisch.juridischeBijstand,
+      description: t.pages.juridisch.juridischeBijstandDesc,
       icon: FileWarning,
-      features: [
-        'Bemiddeling',
-        'Procedureel advies',
-        'Documentvoorbereiding',
-        'Technische ondersteuning'
-      ]
+      features: t.pages.juridisch.juridischeBijstandFeatures
     }
   ];
 
   const benefits = [
     {
-      title: 'Juridische Zekerheid',
-      description: 'Onze documenten zijn rechtsgeldig en voldoen aan alle wettelijke vereisten.'
+      title: t.pages.juridisch.legalCertainty,
+      description: t.pages.juridisch.legalCertaintyText
     },
     {
-      title: 'Erkende Expertise',
-      description: 'Als beëdigd landmeter-expert hebben onze vaststellingen een juridische waarde.'
+      title: t.pages.juridisch.recognizedExpertise,
+      description: t.pages.juridisch.recognizedExpertiseText
     },
     {
-      title: 'Preventieve Werking',
-      description: 'Voorkom juridische geschillen door duidelijke documentatie en professioneel advies.'
+      title: t.pages.juridisch.preventiveEffect,
+      description: t.pages.juridisch.preventiveEffectText
     },
     {
-      title: 'Snelle Dienstverlening',
-      description: 'Spoedprocedures mogelijk voor dringende juridische zaken.'
+      title: t.pages.juridisch.fastService,
+      description: t.pages.juridisch.fastServiceText
     }
   ];
 
@@ -159,24 +141,23 @@ export default function JuridischPage() {
         <div className="max-w-7xl mx-auto px-4">
           <div className="max-w-3xl">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              Juridische Diensten
+              {t.pages.juridisch.title}
             </h1>
             <p className="text-xl text-primary-100 mb-8">
-              Professionele ondersteuning bij juridische kwesties rond eigendom, grenzen en vastgoed.
-              Met onze expertise als beëdigd landmeter-expert bieden wij rechtszekerheid.
+              {t.pages.juridisch.heroText}
             </p>
             <div className="flex flex-wrap gap-4">
               <Link
                 to="/offerte"
                 className="bg-accent-400 text-white px-8 py-3 rounded-lg font-bold hover:bg-accent-500 transition-colors"
               >
-                Offerte Aanvragen
+                {t.requestQuote}
               </Link>
               <Link
                 to="/contact"
                 className="bg-white text-primary-500 px-8 py-3 rounded-lg font-bold hover:bg-primary-50 transition-colors"
               >
-                Contact Opnemen
+                {t.pages.landmeting.contactUs}
               </Link>
             </div>
           </div>
@@ -227,10 +208,10 @@ export default function JuridischPage() {
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Praktijkvoorbeelden
+              {t.pages.juridisch.caseStudiesTitle}
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Hoe wij juridische kwesties succesvol oplossen
+              {t.pages.juridisch.caseStudiesText}
             </p>
           </div>
 
@@ -272,15 +253,15 @@ export default function JuridischPage() {
                   
                   <div className="space-y-4 text-sm">
                     <div>
-                      <p className="font-medium text-gray-500">Situatie:</p>
+                      <p className="font-medium text-gray-500">{t.pages.juridisch.situation}:</p>
                       <p className="text-gray-700">{caseStudies[activeCase].situation}</p>
                     </div>
                     <div>
-                      <p className="font-medium text-gray-500">Aanpak:</p>
+                      <p className="font-medium text-gray-500">{t.pages.juridisch.approach}:</p>
                       <p className="text-gray-700">{caseStudies[activeCase].solution}</p>
                     </div>
                     <div>
-                      <p className="font-medium text-gray-500">Resultaat:</p>
+                      <p className="font-medium text-gray-500">{t.pages.juridisch.result}:</p>
                       <p className="text-green-600 font-medium">{caseStudies[activeCase].result}</p>
                     </div>
                   </div>
@@ -330,10 +311,10 @@ export default function JuridischPage() {
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Transparante Prijzen
+              {t.pages.landmeting.transparentPricing}
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Indicatieve startprijzen voor onze juridische diensten
+              {t.pages.bouwmeting.transparentPricingText}
             </p>
           </div>
 
@@ -343,15 +324,15 @@ export default function JuridischPage() {
                 <div className="bg-primary-500 text-white p-6">
                   <h3 className="text-xl font-bold mb-2">{pricing.service}</h3>
                   <div className="flex items-baseline gap-1">
-                    <span className="text-sm">Vanaf</span>
+                    <span className="text-sm">{t.pages.landmeting.from}</span>
                     <span className="text-4xl font-bold">€{pricing.startPrice}</span>
-                    <span className="text-primary-200">excl. BTW</span>
+                    <span className="text-primary-200">{t.pages.landmeting.exclVat}</span>
                   </div>
                 </div>
                 <div className="p-6">
                   <p className="text-gray-600 mb-4">{pricing.description}</p>
                   <div className="border-t border-gray-100 pt-4">
-                    <p className="text-sm font-medium text-gray-500 mb-2">Prijsbepalende factoren:</p>
+                    <p className="text-sm font-medium text-gray-500 mb-2">{t.pages.landmeting.pricingFactors}</p>
                     <ul className="space-y-2">
                       {pricing.factors.map((factor) => (
                         <li key={factor} className="flex items-center gap-2 text-sm text-gray-600">
@@ -367,7 +348,7 @@ export default function JuridischPage() {
                     to="/offerte#calculator"
                     className="w-full flex items-center justify-center gap-2 bg-accent-500 text-white py-3 rounded-lg font-medium hover:bg-accent-600 transition-colors"
                   >
-                    Offerte Aanvragen
+                    {t.requestQuote}
                     <ArrowRight className="w-4 h-4" />
                   </Link>
                 </div>
@@ -387,7 +368,7 @@ export default function JuridischPage() {
       <section className="bg-gray-50 py-20">
         <div className="max-w-7xl mx-auto px-4">
           <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
-            Waarom kiezen voor onze juridische diensten?
+            {t.pages.juridisch.benefitsTitle}
           </h2>
           <div className="grid md:grid-cols-2 gap-8">
             {benefits.map((benefit, index) => (
@@ -411,24 +392,23 @@ export default function JuridischPage() {
       <section className="bg-primary-500 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-6">
-            Juridisch advies nodig?
+            {t.pages.juridisch.ctaTitle}
           </h2>
           <p className="text-xl text-primary-100 mb-8 max-w-2xl mx-auto">
-            Neem contact op voor een vrijblijvend gesprek over uw situatie.
-            Wij helpen u graag met professioneel advies en ondersteuning.
+            {t.pages.juridisch.ctaText}
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
             <Link
               to="/offerte"
               className="bg-accent-400 text-white px-8 py-4 rounded-lg font-bold hover:bg-accent-500 transition-colors"
             >
-              Offerte Aanvragen
+              {t.requestQuote}
             </Link>
             <Link
               to="/contact"
               className="bg-white text-primary-500 px-8 py-4 rounded-lg font-bold hover:bg-primary-50 transition-colors"
             >
-              Contact Opnemen
+              {t.pages.landmeting.contactUs}
             </Link>
           </div>
         </div>

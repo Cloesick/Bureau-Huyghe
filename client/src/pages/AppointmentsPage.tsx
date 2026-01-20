@@ -106,7 +106,7 @@ export default function AppointmentsPage() {
       setSubmitSuccess(true);
       // Redirect to dashboard after short delay
       setTimeout(() => {
-        navigate('/dashboard');
+        navigate('/portal');
       }, 2000);
     } else {
       setSubmitError(response.error || 'Er is iets misgegaan. Probeer het opnieuw.');

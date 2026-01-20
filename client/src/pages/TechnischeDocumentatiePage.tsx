@@ -1,60 +1,48 @@
 import { FileText, Database, Code2, Layers, Ruler, Calculator, Scan } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Layout from '../components/Layout';
+import { useLanguage } from '../i18n/LanguageContext';
 
 export default function TechnischeDocumentatiePage() {
+  const { t } = useLanguage();
+  
   const services = [
     {
       icon: Database,
-      title: 'BIM Modellering',
-      description: 'Gedetailleerde 3D-modellen voor bouwprojecten met volledige BIM-integratie.',
-      features: [
-        'IFC compatibel',
-        'Clash detectie',
-        'Hoeveelheidsstaten',
-        'Revit/ArchiCAD support'
-      ]
+      title: t.pages.technischeDocumentatie.bim,
+      description: t.pages.technischeDocumentatie.bimDesc,
+      features: t.pages.technischeDocumentatie.bimFeatures
     },
     {
       icon: Code2,
-      title: 'GIS Mapping',
-      description: 'Professionele GIS-kaarten en analyses voor ruimtelijke planning en beheer.',
-      features: [
-        'QGIS/ArcGIS',
-        'Thematische kaarten',
-        'Ruimtelijke analyses',
-        'Geodatabases'
-      ]
+      title: t.pages.technischeDocumentatie.gis,
+      description: t.pages.technischeDocumentatie.gisDesc,
+      features: t.pages.technischeDocumentatie.gisFeatures
     },
     {
       icon: Layers,
-      title: '2D/3D CAD',
-      description: 'Technische tekeningen en 3D-modellen voor bouw en industrie.',
-      features: [
-        'AutoCAD/MicroStation',
-        'As-built tekeningen',
-        'Detailtekeningen',
-        'Constructieplannen'
-      ]
+      title: t.pages.technischeDocumentatie.cad,
+      description: t.pages.technischeDocumentatie.cadDesc,
+      features: t.pages.technischeDocumentatie.cadFeatures
     }
   ];
 
   const process = [
     {
-      title: 'Inventarisatie',
-      description: 'Analyse van bestaande documentatie en projectvereisten.'
+      title: t.pages.technischeDocumentatie.step1Title,
+      description: t.pages.technischeDocumentatie.step1Desc
     },
     {
-      title: 'Opmeting & Scanning',
-      description: 'Digitale opmeting en/of 3D scanning van de bestaande situatie.'
+      title: t.pages.technischeDocumentatie.step2Title,
+      description: t.pages.technischeDocumentatie.step2Desc
     },
     {
-      title: 'Verwerking',
-      description: 'Omzetting van ruwe data naar bruikbare modellen en tekeningen.'
+      title: t.pages.technischeDocumentatie.step3Title,
+      description: t.pages.technischeDocumentatie.step3Desc
     },
     {
-      title: 'Kwaliteitscontrole',
-      description: 'Grondige controle en validatie van alle deliverables.'
+      title: t.pages.technischeDocumentatie.step4Title,
+      description: t.pages.technischeDocumentatie.step4Desc
     }
   ];
 
@@ -83,20 +71,20 @@ export default function TechnischeDocumentatiePage() {
 
   const faqs = [
     {
-      question: 'Welke bestandsformaten worden ondersteund?',
-      answer: 'We ondersteunen alle gangbare formaten zoals IFC, DWG, RVT, SHP en meer. Specifieke formaten op aanvraag.'
+      question: t.pages.technischeDocumentatie.faq1Q,
+      answer: t.pages.technischeDocumentatie.faq1A
     },
     {
-      question: 'Hoe lang duurt een gemiddeld project?',
-      answer: 'De doorlooptijd varieert van enkele dagen tot weken, afhankelijk van de complexiteit en omvang.'
+      question: t.pages.technischeDocumentatie.faq2Q,
+      answer: t.pages.technischeDocumentatie.faq2A
     },
     {
-      question: 'Is de data BIM-compatibel?',
-      answer: 'Ja, al onze modellen voldoen aan de BIM-standaarden en zijn direct bruikbaar in BIM-workflows.'
+      question: t.pages.technischeDocumentatie.faq3Q,
+      answer: t.pages.technischeDocumentatie.faq3A
     },
     {
-      question: 'Kan bestaande documentatie geïntegreerd worden?',
-      answer: 'Ja, we kunnen bestaande plannen en modellen integreren in nieuwe documentatie.'
+      question: t.pages.technischeDocumentatie.faq4Q,
+      answer: t.pages.technischeDocumentatie.faq4A
     }
   ];
 
@@ -107,24 +95,23 @@ export default function TechnischeDocumentatiePage() {
         <div className="max-w-7xl mx-auto px-4">
           <div className="max-w-3xl">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              Technische Documentatie
+              {t.pages.technischeDocumentatie.title}
             </h1>
             <p className="text-xl text-primary-100 mb-8">
-              Van BIM-modellen tot GIS-kaarten: professionele technische documentatie
-              voor uw projecten, met de nieuwste technologie en expertise.
+              {t.pages.technischeDocumentatie.heroText}
             </p>
             <div className="flex flex-wrap gap-4">
               <Link
                 to="/offerte"
                 className="bg-accent-400 text-white px-6 py-3 rounded font-bold hover:bg-accent-500 transition-colors"
               >
-                Offerte Aanvragen
+                {t.requestQuote}
               </Link>
               <a
                 href="#diensten"
                 className="bg-white text-primary-500 px-6 py-3 rounded font-bold hover:bg-primary-50 transition-colors"
               >
-                Onze Diensten
+                {t.pages.landmeting.ourServices}
               </a>
             </div>
           </div>
@@ -135,7 +122,7 @@ export default function TechnischeDocumentatiePage() {
       <section id="diensten" className="py-20">
         <div className="max-w-7xl mx-auto px-4">
           <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">
-            Onze Documentatie Diensten
+            {t.pages.technischeDocumentatie.servicesTitle}
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
             {services.map((service) => {
@@ -166,7 +153,7 @@ export default function TechnischeDocumentatiePage() {
       <section className="bg-gray-50 py-20">
         <div className="max-w-7xl mx-auto px-4">
           <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">
-            Ons Werkproces
+            {t.pages.landmeting.workProcess}
           </h2>
           <div className="grid md:grid-cols-4 gap-8">
             {process.map((step, index) => (
@@ -191,7 +178,7 @@ export default function TechnischeDocumentatiePage() {
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4">
           <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">
-            Deliverables & Formaten
+            {t.pages.technischeDocumentatie.deliverablesTitle}
           </h2>
           <div className="grid md:grid-cols-2 gap-8">
             {deliverables.map((deliverable) => (
@@ -218,7 +205,7 @@ export default function TechnischeDocumentatiePage() {
       <section className="bg-gray-50 py-20">
         <div className="max-w-7xl mx-auto px-4">
           <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">
-            Veelgestelde Vragen
+            {t.pages.landmeting.faqTitle}
           </h2>
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {faqs.map((faq) => (
@@ -235,24 +222,23 @@ export default function TechnischeDocumentatiePage() {
       <section className="bg-primary-500 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-6">
-            Klaar om uw project te bespreken?
+            {t.pages.landmeting.ctaTitle}
           </h2>
           <p className="text-xl text-primary-100 mb-8 max-w-2xl mx-auto">
-            Neem contact op voor een vrijblijvende offerte of stel uw vragen.
-            We reageren binnen 24 uur.
+            {t.pages.landmeting.ctaText}
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
             <Link
               to="/offerte"
               className="bg-accent-400 text-white px-8 py-4 rounded-lg font-bold hover:bg-accent-500 transition-colors"
             >
-              Offerte Aanvragen
+              {t.requestQuote}
             </Link>
             <Link
               to="/contact"
               className="bg-white text-primary-500 px-8 py-4 rounded-lg font-bold hover:bg-primary-50 transition-colors"
             >
-              Contact Opnemen
+              {t.pages.landmeting.contactUs}
             </Link>
           </div>
         </div>
@@ -264,18 +250,18 @@ export default function TechnischeDocumentatiePage() {
           <div className="grid md:grid-cols-3 gap-8 text-center">
             <div>
               <Scan className="w-12 h-12 text-primary-500 mx-auto mb-4" />
-              <h3 className="text-xl font-bold text-gray-900 mb-2">Moderne Technologie</h3>
-              <p className="text-gray-600">State-of-the-art hardware en software</p>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">{t.pages.technischeDocumentatie.modernTechnology}</h3>
+              <p className="text-gray-600">{t.pages.technischeDocumentatie.modernTechnologyText}</p>
             </div>
             <div>
               <Ruler className="w-12 h-12 text-primary-500 mx-auto mb-4" />
-              <h3 className="text-xl font-bold text-gray-900 mb-2">Hoge Precisie</h3>
-              <p className="text-gray-600">Nauwkeurige documentatie en modellen</p>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">{t.pages.technischeDocumentatie.highPrecision}</h3>
+              <p className="text-gray-600">{t.pages.technischeDocumentatie.highPrecisionText}</p>
             </div>
             <div>
               <Calculator className="w-12 h-12 text-primary-500 mx-auto mb-4" />
-              <h3 className="text-xl font-bold text-gray-900 mb-2">Transparante Prijzen</h3>
-              <p className="text-gray-600">Duidelijke offertes zonder verrassingen</p>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">{t.pages.landmeting.transparentPrices}</h3>
+              <p className="text-gray-600">{t.pages.landmeting.transparentPricesText}</p>
             </div>
           </div>
         </div>

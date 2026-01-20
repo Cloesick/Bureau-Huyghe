@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { MapPin, Ruler, Compass, FileCheck, Clock, Calculator, ArrowRight, ChevronLeft, ChevronRight, Check } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useLanguage } from '../i18n/LanguageContext';
+import Header from '../components/Header';
 
 // Before/After project examples
 const projectExamples = [
@@ -83,108 +85,94 @@ const pricingIndicators = [
 ];
 
 export default function LandmetingPage() {
+  const { t } = useLanguage();
   const [activeExample, setActiveExample] = useState(0);
   const [showAfter, setShowAfter] = useState(false);
 
   const services = [
     {
       icon: MapPin,
-      title: 'Perceelafpaling',
-      description: 'Nauwkeurige afbakening van uw perceel met officiële grensmarkeringen en gedetailleerd proces-verbaal.',
-      features: [
-        'Plaatsing van grenspalen',
-        'Gedetailleerde opmeting',
-        'Officieel proces-verbaal',
-        'Digitaal plan'
-      ]
+      title: t.pages.landmeting.perceelafpaling,
+      description: t.pages.landmeting.perceelafpalingDesc,
+      features: t.pages.landmeting.perceelafpalingFeatures
     },
     {
       icon: Ruler,
-      title: 'Topografische Opmeting',
-      description: 'Complete terreinopmeting met hoogtegegevens, gebouwen, en terreindetails voor een volledig inzicht.',
-      features: [
-        'Hoogtemetingen',
-        '3D terreinmodel',
-        'Gebouwcontouren',
-        'Technische detaillering'
-      ]
+      title: t.pages.landmeting.topografie,
+      description: t.pages.landmeting.topografieDesc,
+      features: t.pages.landmeting.topografieFeatures
     },
     {
       icon: Compass,
-      title: 'GPS Metingen',
-      description: 'Hoogprecisie GPS-metingen voor exacte plaatsbepaling en coördinaatbepaling.',
-      features: [
-        'RTK GPS technologie',
-        'Millimeter precisie',
-        'Snelle uitvoering',
-        'Digitale kaarten'
-      ]
+      title: t.pages.landmeting.gps,
+      description: t.pages.landmeting.gpsDesc,
+      features: t.pages.landmeting.gpsFeatures
     }
   ];
 
   const process = [
     {
-      title: 'Aanvraag & Planning',
-      description: 'Bespreek uw project en ontvang een gedetailleerde offerte binnen 24 uur.'
+      title: t.pages.landmeting.step1Title,
+      description: t.pages.landmeting.step1Desc
     },
     {
-      title: 'Vooronderzoek',
-      description: 'We analyseren bestaande plannen en kadastrale gegevens.'
+      title: t.pages.landmeting.step2Title,
+      description: t.pages.landmeting.step2Desc
     },
     {
-      title: 'Terreinwerk',
-      description: 'Uitvoering van de metingen met state-of-the-art apparatuur.'
+      title: t.pages.landmeting.step3Title,
+      description: t.pages.landmeting.step3Desc
     },
     {
-      title: 'Verwerking & Rapport',
-      description: 'Oplevering van gedetailleerde plannen en officiële documenten.'
+      title: t.pages.landmeting.step4Title,
+      description: t.pages.landmeting.step4Desc
     }
   ];
 
   const faqs = [
     {
-      question: 'Hoe lang duurt een perceelafpaling?',
-      answer: 'Een standaard perceelafpaling duurt gemiddeld 2-4 uur, afhankelijk van de grootte en complexiteit van het terrein.'
+      question: t.pages.landmeting.faq1Q,
+      answer: t.pages.landmeting.faq1A
     },
     {
-      question: 'Wat kost een landmeting?',
-      answer: 'De prijs varieert op basis van verschillende factoren. Neem contact op voor een gedetailleerde offerte op maat.'
+      question: t.pages.landmeting.faq2Q,
+      answer: t.pages.landmeting.faq2A
     },
     {
-      question: 'Zijn de metingen officieel erkend?',
-      answer: 'Ja, als beëdigd landmeter-expert zijn al onze metingen en documenten officieel erkend.'
+      question: t.pages.landmeting.faq3Q,
+      answer: t.pages.landmeting.faq3A
     },
     {
-      question: 'Hoe snel kan ik een afspraak krijgen?',
-      answer: 'We streven ernaar binnen 5 werkdagen een afspraak in te plannen.'
+      question: t.pages.landmeting.faq4Q,
+      answer: t.pages.landmeting.faq4A
     }
   ];
 
   return (
     <div className="min-h-screen bg-white">
+      <Header />
       {/* Hero Section */}
       <section className="bg-primary-500 text-white py-20">
         <div className="max-w-7xl mx-auto px-4">
           <div className="max-w-3xl">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              Professionele Landmeting
+              {t.pages.landmeting.title}
             </h1>
             <p className="text-xl text-primary-100 mb-8">
-              Nauwkeurige metingen en duidelijke documentatie voor al uw landmeetkundige projecten.
-              Met meer dan 25 jaar ervaring als beëdigd landmeter-expert.
+              {t.pages.landmeting.heroText}
             </p>
             <div className="flex flex-wrap gap-4">
               <Link
                 to="/offerte"
                 className="bg-accent-400 text-white px-6 py-3 rounded font-bold hover:bg-accent-500 transition-colors"
               >
-                Offerte Aanvragen
+                {t.pages.landmeting.requestQuote}
               </Link>
               <a
                 href="#diensten"
                 className="bg-white text-primary-500 px-6 py-3 rounded font-bold hover:bg-primary-50 transition-colors"
               >
-                Onze Diensten
+                {t.pages.landmeting.ourServices}
               </a>
             </div>
           </div>
@@ -195,7 +183,7 @@ export default function LandmetingPage() {
       <section id="diensten" className="py-20">
         <div className="max-w-7xl mx-auto px-4">
           <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">
-            Onze Landmeetkundige Diensten
+            {t.pages.landmeting.servicesTitle}
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
             {services.map((service) => {
@@ -227,10 +215,10 @@ export default function LandmetingPage() {
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Projectvoorbeelden
+              {t.pages.landmeting.projectExamples}
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Bekijk hoe wij uw project van begin tot eind begeleiden
+              {t.pages.landmeting.projectExamplesText}
             </p>
           </div>
 
@@ -267,11 +255,11 @@ export default function LandmetingPage() {
                     onClick={() => setShowAfter(!showAfter)}
                     className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-white/90 backdrop-blur-sm px-6 py-3 rounded-full shadow-lg flex items-center gap-3 hover:bg-white transition-colors"
                   >
-                    <span className={`font-medium ${!showAfter ? 'text-primary-600' : 'text-gray-400'}`}>Voor</span>
+                    <span className={`font-medium ${!showAfter ? 'text-primary-600' : 'text-gray-400'}`}>{t.pages.landmeting.before}</span>
                     <div className="w-12 h-6 bg-gray-200 rounded-full relative">
                       <div className={`absolute top-1 w-4 h-4 bg-primary-500 rounded-full transition-all ${showAfter ? 'left-7' : 'left-1'}`} />
                     </div>
-                    <span className={`font-medium ${showAfter ? 'text-primary-600' : 'text-gray-400'}`}>Na</span>
+                    <span className={`font-medium ${showAfter ? 'text-primary-600' : 'text-gray-400'}`}>{t.pages.landmeting.after}</span>
                   </button>
                   {/* Label */}
                   <div className={`absolute top-4 left-4 px-3 py-1 rounded-full text-sm font-bold ${showAfter ? 'bg-green-500 text-white' : 'bg-orange-500 text-white'}`}>
@@ -334,10 +322,10 @@ export default function LandmetingPage() {
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Transparante Prijzen
+              {t.pages.landmeting.transparentPricing}
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Indicatieve startprijzen voor onze diensten. Vraag een offerte aan voor een exacte prijs op maat.
+              {t.pages.landmeting.transparentPricingText}
             </p>
           </div>
 
@@ -347,15 +335,15 @@ export default function LandmetingPage() {
                 <div className="bg-primary-500 text-white p-6">
                   <h3 className="text-xl font-bold mb-2">{pricing.service}</h3>
                   <div className="flex items-baseline gap-1">
-                    <span className="text-sm">Vanaf</span>
+                    <span className="text-sm">{t.pages.landmeting.from}</span>
                     <span className="text-4xl font-bold">€{pricing.startPrice}</span>
-                    <span className="text-primary-200">excl. BTW</span>
+                    <span className="text-primary-200">{t.pages.landmeting.exclVat}</span>
                   </div>
                 </div>
                 <div className="p-6">
                   <p className="text-gray-600 mb-4">{pricing.description}</p>
                   <div className="border-t border-gray-100 pt-4">
-                    <p className="text-sm font-medium text-gray-500 mb-2">Prijsbepalende factoren:</p>
+                    <p className="text-sm font-medium text-gray-500 mb-2">{t.pages.landmeting.pricingFactors}</p>
                     <ul className="space-y-2">
                       {pricing.factors.map((factor) => (
                         <li key={factor} className="flex items-center gap-2 text-sm text-gray-600">
@@ -371,7 +359,7 @@ export default function LandmetingPage() {
                     to="/offerte#calculator"
                     className="w-full flex items-center justify-center gap-2 bg-accent-500 text-white py-3 rounded-lg font-medium hover:bg-accent-600 transition-colors"
                   >
-                    Bereken Prijs
+                    {t.pages.landmeting.calculatePrice}
                     <ArrowRight className="w-4 h-4" />
                   </Link>
                 </div>
@@ -381,7 +369,7 @@ export default function LandmetingPage() {
 
           <div className="mt-8 text-center">
             <p className="text-gray-500 text-sm">
-              * Prijzen zijn indicatief. De exacte prijs wordt bepaald na een gratis terreinbezoek of telefonisch gesprek.
+              {t.pages.landmeting.pricingDisclaimer}
             </p>
           </div>
         </div>
@@ -391,7 +379,7 @@ export default function LandmetingPage() {
       <section className="bg-gray-50 py-20">
         <div className="max-w-7xl mx-auto px-4">
           <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">
-            Ons Werkproces
+            {t.pages.landmeting.workProcess}
           </h2>
           <div className="grid md:grid-cols-4 gap-8">
             {process.map((step, index) => (
@@ -416,7 +404,7 @@ export default function LandmetingPage() {
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4">
           <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">
-            Veelgestelde Vragen
+            {t.pages.landmeting.faqTitle}
           </h2>
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {faqs.map((faq) => (
@@ -433,24 +421,23 @@ export default function LandmetingPage() {
       <section className="bg-primary-500 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-6">
-            Klaar om uw project te bespreken?
+            {t.pages.landmeting.ctaTitle}
           </h2>
           <p className="text-xl text-primary-100 mb-8 max-w-2xl mx-auto">
-            Neem contact op voor een vrijblijvende offerte of stel uw vragen.
-            We reageren binnen 24 uur.
+            {t.pages.landmeting.ctaText}
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
             <Link
               to="/offerte"
               className="bg-accent-400 text-white px-8 py-4 rounded-lg font-bold hover:bg-accent-500 transition-colors"
             >
-              Offerte Aanvragen
+              {t.pages.landmeting.requestQuote}
             </Link>
             <Link
               to="/contact"
               className="bg-white text-primary-500 px-8 py-4 rounded-lg font-bold hover:bg-primary-50 transition-colors"
             >
-              Contact Opnemen
+              {t.pages.landmeting.contactUs}
             </Link>
           </div>
         </div>
@@ -462,18 +449,18 @@ export default function LandmetingPage() {
           <div className="grid md:grid-cols-3 gap-8 text-center">
             <div>
               <Clock className="w-12 h-12 text-primary-500 mx-auto mb-4" />
-              <h3 className="text-xl font-bold text-gray-900 mb-2">25+ Jaar Ervaring</h3>
-              <p className="text-gray-600">Expertise in landmeting en technische documentatie</p>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">{t.pages.landmeting.yearsExperience}</h3>
+              <p className="text-gray-600">{t.pages.landmeting.yearsExperienceText}</p>
             </div>
             <div>
               <FileCheck className="w-12 h-12 text-primary-500 mx-auto mb-4" />
-              <h3 className="text-xl font-bold text-gray-900 mb-2">Beëdigd Expert</h3>
-              <p className="text-gray-600">Officieel erkend landmeter-expert</p>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">{t.pages.landmeting.swornExpert}</h3>
+              <p className="text-gray-600">{t.pages.landmeting.swornExpertText}</p>
             </div>
             <div>
               <Calculator className="w-12 h-12 text-primary-500 mx-auto mb-4" />
-              <h3 className="text-xl font-bold text-gray-900 mb-2">Transparante Prijzen</h3>
-              <p className="text-gray-600">Duidelijke offertes zonder verborgen kosten</p>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">{t.pages.landmeting.transparentPrices}</h3>
+              <p className="text-gray-600">{t.pages.landmeting.transparentPricesText}</p>
             </div>
           </div>
         </div>

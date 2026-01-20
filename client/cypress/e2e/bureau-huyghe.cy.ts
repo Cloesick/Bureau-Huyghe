@@ -13,10 +13,9 @@ describe('Bureau Huyghe Website', () => {
 
     it('should have correct navigation links', () => {
       const navItems = [
-        { text: 'Landmeting', href: '/landmeting' },
-        { text: 'Bouwmeting', href: '/bouwmeting' },
-        { text: 'Technische Documentatie', href: '/technische-documentatie' },
-        { text: 'Juridisch', href: '/juridisch' }
+        { text: 'Home', href: '/' },
+        { text: 'Diensten', href: '/#diensten' },
+        { text: 'Contact', href: '/contact' }
       ];
 
       navItems.forEach(item => {
@@ -36,11 +35,10 @@ describe('Bureau Huyghe Website', () => {
 
     it('should show mobile menu on button click', () => {
       cy.viewport('iphone-x');
-      cy.get('[aria-label="Menu openen"]').click();
-      cy.get('[data-test="header"]')
-        .find('nav')
+      cy.get('[data-test="mobile-menu-button"]').click();
+      cy.get('[data-test="mobile-nav"]')
         .should('be.visible')
-        .contains('Landmeting')
+        .contains('Home')
         .should('be.visible');
     });
   });
@@ -56,10 +54,8 @@ describe('Bureau Huyghe Website', () => {
     it('should have navigation links', () => {
       const footerLinks = [
         'Home',
-        'Landmeting',
-        'Bouwmeting',
-        'Technische Documentatie',
-        'Juridisch',
+        'Diensten',
+        'Contact',
         'Offerte'
       ];
 
@@ -74,8 +70,8 @@ describe('Bureau Huyghe Website', () => {
       cy.get('[data-test="footer"]')
         .should('contain', '© 2025 Bureau Huyghe')
         .should('contain', 'Cookies')
-        .should('contain', 'Privacyverklaring')
-        .should('contain', 'GDPR-compliant');
+        .should('contain', 'Privacy')
+        .should('contain', 'Voorwaarden');
     });
   });
 

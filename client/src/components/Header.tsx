@@ -1,19 +1,11 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X, Facebook, Linkedin, Instagram, Twitter, Youtube, Phone, Calendar } from 'lucide-react';
-import { LanguageSwitcher } from '../i18n/LanguageContext';
+import { Menu, X, Phone } from 'lucide-react';
+import { useLanguage } from '../i18n/LanguageContext';
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  const social = [
-    { name: 'Facebook', icon: Facebook, url: 'https://facebook.com/bureauhuyghe' },
-    { name: 'LinkedIn', icon: Linkedin, url: 'https://linkedin.com/company/bureau-huyghe' },
-    { name: 'Instagram', icon: Instagram, url: 'https://instagram.com/bureauhuyghe' },
-    { name: 'Twitter', icon: Twitter, url: 'https://twitter.com/bureauhuyghe' },
-    { name: 'YouTube', icon: Youtube, url: 'https://youtube.com/c/bureauhuyghe' },
-    { name: 'Website', icon: Youtube, url: 'https://bureau-huyghe.be' }
-  ];
+  const { t } = useLanguage();
 
   return (
     <header className="bg-primary-500 text-white fixed w-full top-0 z-50" data-test="header">
@@ -21,41 +13,21 @@ export default function Header() {
       <div className="bg-primary-600 border-b border-primary-400">
         <div className="max-w-7xl mx-auto px-4 py-2 flex justify-between items-center text-sm">
           <div className="flex items-center gap-4">
-            <a href="mailto:info@bureau-huyghe.be" className="text-primary-100 hover:text-accent-300 transition-colors">
+            <a
+              href="mailto:info@bureau-huyghe.be"
+              className="text-primary-100 hover:text-accent-300 transition-colors"
+              data-test="header-email"
+            >
               info@bureau-huyghe.be
             </a>
             <a href="tel:+3250000000" className="sm:hidden text-primary-100 hover:text-accent-300 transition-colors">
               <Phone className="w-4 h-4" />
             </a>
             <span className="hidden sm:inline text-primary-300">|</span>
-            <span className="hidden sm:inline text-primary-100">T. +32 (0)50 00 00 00</span>
-            <span className="text-primary-300">|</span>
-            <Link to="/contact#afspraak" className="flex items-center gap-1.5 text-accent-300 hover:text-accent-200 transition-colors font-medium">
-              <Calendar className="w-4 h-4" />
-              <span className="hidden sm:inline">Maak afspraak</span>
-            </Link>
+            <span className="hidden sm:inline text-primary-100" data-test="header-phone">{t.phone}</span>
           </div>
           <div className="flex items-center gap-4 sm:gap-6">
             <span className="hidden md:inline text-primary-200">Straat 123, 8200 Brugge</span>
-            <span className="hidden md:inline text-primary-300">|</span>
-            <div className="flex items-center gap-2 sm:gap-3">
-              {social.slice(0, 3).map((platform) => {
-                const Icon = platform.icon;
-                return (
-                  <a
-                    key={platform.name}
-                    href={platform.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-primary-100 hover:text-accent-300 transition-colors"
-                    aria-label={platform.name}
-                  >
-                    <Icon className="w-4 h-4" />
-                  </a>
-                );
-              })}
-              <LanguageSwitcher />
-            </div>
           </div>
         </div>
       </div>
@@ -69,12 +41,9 @@ export default function Header() {
           
           {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-4" data-test="desktop-nav">
-            <Link to="/landmeting" className="nav-link" data-test="nav-link">Landmeting</Link>
-            <Link to="/bouwmeting" className="nav-link" data-test="nav-link">Bouwmeting</Link>
-            <Link to="/technische-documentatie" className="nav-link" data-test="nav-link">Technische Documentatie</Link>
-            <Link to="/juridisch" className="nav-link" data-test="nav-link">Juridisch</Link>
-            <Link to="/portfolio" className="nav-link" data-test="nav-link">Portfolio</Link>
-            <Link to="/contact" className="nav-link" data-test="nav-link">Contact</Link>
+            <Link to="/" className="nav-link text-primary-100 hover:text-accent-400" data-test="nav-home">Home</Link>
+            <a href="/#diensten" className="nav-link text-primary-100 hover:text-accent-400" data-test="nav-services">Diensten</a>
+            <Link to="/contact" className="nav-link text-primary-100 hover:text-accent-400" data-test="nav-contact">Contact</Link>
           </nav>
           
           <div className="flex items-center gap-3">
@@ -83,14 +52,14 @@ export default function Header() {
               className="hidden md:inline-flex bg-accent-400 text-white px-6 py-2.5 rounded-lg font-bold hover:bg-accent-500 transition-colors"
               data-test="cta-button"
             >
-              Offerte Aanvragen
+              {t.requestQuote}
             </Link>
             
             {/* Mobile menu button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="md:hidden p-2 rounded-lg hover:bg-primary-800 transition-colors"
-              aria-label="Menu openen"
+              aria-label={t.openMenu}
               data-test="mobile-menu-button"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -104,42 +73,21 @@ export default function Header() {
             mobileMenuOpen ? 'max-h-[calc(100vh-8rem)] opacity-100' : 'max-h-0 opacity-0'
           }`}
         >
-            <nav className="flex flex-col px-4 py-4 space-y-4">
+            <nav className="flex flex-col px-4 py-4 space-y-4" data-test="mobile-nav">
               <Link 
-                to="/landmeting" 
+                to="/" 
                 className="px-4 py-3 rounded-lg hover:bg-primary-600 transition-colors"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                Landmeting
+                Home
               </Link>
-              <Link 
-                to="/bouwmeting" 
+              <a
+                href="/#diensten"
                 className="px-4 py-3 rounded-lg hover:bg-primary-600 transition-colors"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                Bouwmeting
-              </Link>
-              <Link 
-                to="/technische-documentatie" 
-                className="px-4 py-3 rounded-lg hover:bg-primary-600 transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Technische Documentatie
-              </Link>
-              <Link 
-                to="/juridisch" 
-                className="px-4 py-3 rounded-lg hover:bg-primary-600 transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Juridisch
-              </Link>
-              <Link 
-                to="/portfolio" 
-                className="px-4 py-3 rounded-lg hover:bg-primary-600 transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Portfolio
-              </Link>
+                Diensten
+              </a>
               <Link 
                 to="/contact" 
                 className="px-4 py-3 rounded-lg hover:bg-primary-600 transition-colors"
@@ -152,7 +100,7 @@ export default function Header() {
                 className="mt-2 bg-accent-400 text-white px-4 py-3 rounded-lg font-bold text-center hover:bg-accent-500 transition-colors shadow-lg hover:shadow-xl"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                Offerte Aanvragen
+                {t.requestQuote}
               </Link>
             </nav>
           </div>

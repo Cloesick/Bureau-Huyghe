@@ -1,50 +1,34 @@
-import { MapPin, Phone, Mail, Clock, Facebook, Linkedin, Instagram } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock } from 'lucide-react';
 import ContactForm from '../components/ContactForm';
-import CalendlyBooking from '../components/CalendlyBooking';
 import Layout from '../components/Layout';
+import { useLanguage } from '../i18n/LanguageContext';
 
 export default function ContactPage() {
+  const { t } = useLanguage();
+  
   const contactInfo = [
     {
       icon: MapPin,
-      title: 'Bezoekadres',
+      title: t.pages.contact.visitAddress,
       content: 'Straat 123\n8200 Brugge',
       link: 'https://goo.gl/maps/your-address-here'
     },
     {
       icon: Phone,
-      title: 'Telefoon',
+      title: t.pages.contact.telephone,
       content: '+32 (0)50 00 00 00',
       link: 'tel:+3250000000'
     },
     {
       icon: Mail,
-      title: 'Email',
+      title: t.pages.contact.email,
       content: 'info@bureau-huyghe.be',
       link: 'mailto:info@bureau-huyghe.be'
     },
     {
       icon: Clock,
-      title: 'Openingsuren',
-      content: 'Maandag - Vrijdag\n9:00 - 17:00'
-    }
-  ];
-
-  const social = [
-    {
-      name: 'Facebook',
-      icon: Facebook,
-      url: 'https://facebook.com/bureauhuyghe'
-    },
-    {
-      name: 'LinkedIn',
-      icon: Linkedin,
-      url: 'https://linkedin.com/company/bureau-huyghe'
-    },
-    {
-      name: 'Instagram',
-      icon: Instagram,
-      url: 'https://instagram.com/bureauhuyghe'
+      title: t.pages.contact.openingHours,
+      content: t.pages.contact.openingHoursText
     }
   ];
 
@@ -55,11 +39,10 @@ export default function ContactPage() {
         <div className="max-w-7xl mx-auto px-4">
           <div className="max-w-3xl">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              Contact
+              {t.pages.contact.title}
             </h1>
             <p className="text-xl text-primary-100 mb-8">
-              Heeft u een vraag over onze diensten of wilt u een offerte aanvragen?
-              Vul het onderstaande formulier in of neem rechtstreeks contact met ons op.
+              {t.pages.contact.heroText}
             </p>
           </div>
         </div>
@@ -71,7 +54,7 @@ export default function ContactPage() {
             {/* Contact Form */}
             <div className="lg:col-span-2 order-last lg:order-first">
               <div className="bg-white rounded-xl shadow-lg p-6 md:p-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">Contactformulier</h2>
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">{t.pages.contact.formTitle}</h2>
                 <ContactForm />
               </div>
             </div>
@@ -80,7 +63,7 @@ export default function ContactPage() {
             <div className="lg:col-span-1 space-y-6 order-first lg:order-last">
               {/* Contact Details */}
               <div className="bg-primary-900 text-white rounded-xl shadow-lg p-6 md:p-8">
-                <h2 className="text-xl font-bold mb-6">Contactgegevens</h2>
+                <h2 className="text-xl font-bold mb-6">{t.pages.contact.contactDetails}</h2>
                 <div className="space-y-6">
                   {contactInfo.map((info, index) => {
                     const Icon = info.icon;
@@ -114,27 +97,6 @@ export default function ContactPage() {
                   })}
                 </div>
 
-                {/* Social Media */}
-                <div className="mt-8 pt-8 border-t border-primary-800">
-                  <h3 className="font-semibold text-primary-100 mb-4">Volg ons</h3>
-                  <div className="flex gap-4">
-                    {social.map((platform) => {
-                      const Icon = platform.icon;
-                      return (
-                        <a
-                          key={platform.name}
-                          href={platform.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="p-2 rounded-lg bg-primary-800/50 text-primary-200 hover:bg-primary-800 hover:text-accent-400 transition-all duration-300"
-                          aria-label={platform.name}
-                        >
-                          <Icon className="w-5 h-5" />
-                        </a>
-                      );
-                    })}
-                  </div>
-                </div>
               </div>
 
               {/* Map */}
@@ -153,12 +115,6 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Appointment Booking Section */}
-      <section id="afspraak" className="py-12 md:py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4">
-          <CalendlyBooking variant="full" />
-        </div>
-      </section>
     </Layout>
   );
 }

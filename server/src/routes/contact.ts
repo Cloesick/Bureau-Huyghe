@@ -1,8 +1,7 @@
-import { Router } from 'express';
+import { Router, Request, Response, NextFunction } from 'express';
 import { PrismaClient } from '@prisma/client';
 import { body, validationResult } from 'express-validator';
 import nodemailer from 'nodemailer';
-import { AppError } from '../middleware/errorHandler';
 
 const router = Router();
 const prisma = new PrismaClient();
@@ -28,11 +27,12 @@ const validateContactForm = [
 ];
 
 // Submit contact form
-router.post('/', validateContactForm, async (req, res, next) => {
+router.post('/', validateContactForm, async (req: Request, res: Response, next: NextFunction) => {
   try {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
+      res.status(400).json({ errors: errors.array() });
+      return;
     }
 
     const {
@@ -59,10 +59,10 @@ router.post('/', validateContactForm, async (req, res, next) => {
         address,
         category,
         message,
-        propertyFields: propertyFields ? JSON.stringify(propertyFields) : null,
-        constructionFields: constructionFields ? JSON.stringify(constructionFields) : null,
-        technicalFields: technicalFields ? JSON.stringify(technicalFields) : null,
-        legalFields: legalFields ? JSON.stringify(legalFields) : null,
+        propertyFields: propertyFields || undefined,
+        constructionFields: constructionFields || undefined,
+        technicalFields: technicalFields || undefined,
+        legalFields: legalFields || undefined,
       },
     });
 
@@ -104,8 +104,10 @@ router.post('/', validateContactForm, async (req, res, next) => {
         message: 'Contact form submitted successfully'
       }
     });
+    return;
   } catch (error) {
     next(error);
+    return;
   }
 });
 

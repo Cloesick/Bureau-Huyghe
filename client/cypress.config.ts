@@ -1,7 +1,19 @@
 import { defineConfig } from 'cypress';
 import { mergeConfig } from 'vite';
 import viteConfig from './vite.config';
-import jwt from 'jsonwebtoken';
+
+async function signJwtTask({
+  payload,
+  secret,
+}: {
+  payload: Record<string, unknown>;
+  secret: string;
+}) {
+  const jwtMod = await import('jsonwebtoken');
+  const jwt = (jwtMod as any).default ?? jwtMod;
+
+  return jwt.sign(payload, secret, { expiresIn: '1h' });
+}
 
 export default defineConfig({
   reporter: 'spec',
@@ -42,7 +54,7 @@ export default defineConfig({
 
       on('task', {
         signJwt({ payload, secret }: { payload: Record<string, unknown>; secret: string }) {
-          return jwt.sign(payload, secret, { expiresIn: '1h' });
+          return signJwtTask({ payload, secret });
         },
       });
 

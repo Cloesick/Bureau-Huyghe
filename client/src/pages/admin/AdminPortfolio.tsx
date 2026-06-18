@@ -29,7 +29,7 @@ interface PortfolioItem {
 }
 
 
-const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+const API_BASE = import.meta.env.VITE_API_URL || '/api';
 
 const categories = [
   'Perceelafpaling',
@@ -310,7 +310,7 @@ function PortfolioModal({ item, onSave, onClose }: PortfolioModalProps) {
       formDataUpload.append('image', file);
       formDataUpload.append('category', 'portfolio');
 
-      const response = await fetch(`${API_BASE}/api/upload/image`, {
+      const response = await fetch(`${API_BASE}/upload/image`, {
         method: 'POST',
         body: formDataUpload,
       });

@@ -14,8 +14,13 @@
     "lint": "npm run lint --prefix client",
     "test": "npm run test --prefix client",
     "test:e2e": "npm run test:e2e --prefix client",
-    "test:learn": "cypress run --reporter ./cypress/plugins/windsurf-reporter.js",
-    "test:analyze": "node scripts/analyze-test-results.cjs"
+    "test:learn": "cypress run",
+    "test:analyze": "node scripts/analyze-test-results.js",
+    "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test:dashboard": "node scripts/analyze-test-results.js && start cypress/insights/report.html",
+    "test:insights": "node scripts/analyze-test-results.js"
   },
   "keywords": [],
   "author": "",
@@ -47,6 +52,11 @@
     "postcss": "^8.4.47",
     "tailwindcss": "^3.4.14",
     "typescript": "^5.6.3",
-    "vite": "^5.4.10"
+    "vite": "^5.4.10",
+    "cypress-multi-reporters": "^1.6.4",
+    "mocha-junit-reporter": "^2.2.1",
+    "mochawesome": "^7.1.3",
+    "mochawesome-merge": "^4.3.0",
+    "mochawesome-report-generator": "^6.2.0"
   }
 }
